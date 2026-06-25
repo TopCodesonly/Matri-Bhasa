@@ -1,0 +1,131 @@
+id,category,subcategory,english,newari_devanagari,newari_transliteration,grammar_pattern,grammar_note,difficulty
+1,greetings,introduction,My name is Ram.,जिगु नां राम खः।,Jigu naa Ram khah.,S + naa + Name + khah,khah = 'is' (identity copula),beginner
+2,greetings,introduction,What is your name?,छिगु नां छु खः?,Chhigu naa chhu khah?,S + naa + chhu + khah,chhu = 'what' (question word),beginner
+3,greetings,introduction,I am from Kathmandu.,जि येँथाय् वयाच्वंगु खः।,Ji yenthaay wayachwangu khah.,S + place + vb.origin + khah,wayachwangu = 'having come',beginner
+4,greetings,introduction,Nice to meet you.,छिन्त हःसा भिंगु जुल।,Chhinta hasa bhingu jul.,S + V + adj + jul,jul = past tense 'became',beginner
+5,greetings,greeting,Hello / Greetings.,जुजु।,Juju.,Standalone greeting,Respectful informal greeting,beginner
+6,greetings,greeting,How are you?,छि थें दु?,Chhi then du?,S + adv + du,du = existential 'are/is',beginner
+7,greetings,greeting,I am well.,जि सुथें दु।,Ji suthen du.,S + adv + du,suthen = 'well/fine',beginner
+8,greetings,greeting,Thank you.,सुभाय्।,Subhay.,Standalone expression,Standard thanks,beginner
+9,greetings,farewell,See you later.,थ्व च्वसा त्वः।,Thwa chwasa twah.,time-adv + V,chwasa twah = 'until goodbye',beginner
+10,greetings,farewell,Goodbye.,च्वसा।,Chwasa.,Standalone,Farewell expression,beginner
+11,tense,present,I eat rice.,जि बियां चायेगु।,Ji biyan chayegu.,S + O + V,SOV basic pattern,beginner
+12,tense,present,She drinks water.,व लः ज्यायेगु।,Wa lah jyayegu.,S + O + V,v = she/he (gender-neutral),beginner
+13,tense,present,He reads a book.,व सफु ल्हायेगु।,Wa saphu lhayegu.,S + O + V,saphu = book,beginner
+14,tense,present,We go to school.,जिपिं विद्यालय वनेगु।,Jiping vidyalaya wanegu.,S + O(place) + V,jiping = we,beginner
+15,tense,present,They play every day.,वपिं सतय् त्यायेगु।,Waping satay tyayegu.,S + adv + V,satay = always/everyday,beginner
+16,tense,present,I speak Nepalbhasa.,जि नेपालभाषा धायेगु।,Ji Nepalbhasa dhayegu.,S + O + V,dhayegu = to speak,beginner
+17,tense,present,The child laughs.,मचा त्वःयायेगु।,Macha twahyayegu.,S + V,intransitive verb,beginner
+18,tense,present,Ram works in the city.,राम नगरय् मेगु।,Ram nagaray megu.,S + loc + V,nagaray = locative 'in the city',intermediate
+19,tense,present,I know this word.,थ्व शब्द जिं थुयेगु।,Thwa shabda ji-ng thuyegu.,O + S(ergative) + V,ji-ng = ergative I,intermediate
+20,tense,present,She understands Newari.,व नेवारी थुयेगु।,Wa Newari thuyegu.,S + O + V,thuyegu = to understand,intermediate
+21,tense,past,I ate food.,जिं खाजा चायेकाल।,Ji-ng khaja chayekal.,S(erg) + O + V-past,kal = past tense suffix,beginner
+22,tense,past,She went to the market.,व बजार वनाल।,Wa bajar wanal.,S + O(place) + V-past,wanal = went (past),beginner
+23,tense,past,We saw the temple.,जिपिं देगः स्वयाल।,Jiping degah swayala.,S + O + V-past,swayala = saw (past),beginner
+24,tense,past,Ram came yesterday.,राम न्हापाया न्हि वयाल।,Ram nhapaya nhi wayal.,S + time + V-past,nhapaya nhi = yesterday,beginner
+25,tense,past,They learned Newari.,वपिं नेवारी ल्हायेकाल।,Waping Newari lhayekal.,S + O + V-past,lhayekal = learned (past),intermediate
+26,tense,past,I had already eaten.,जिं न्हापाःसा चायेकाय् तल।,Ji-ng nhapahsa chayekay tal.,S(erg) + adv + V-perf,perfect aspect marker,intermediate
+27,tense,past,The rain fell last night.,च्वान्हु झ्वः च्याल।,Chwanhu jhwah chyal.,time + S + V-past,chyal = fell (past intransitive),intermediate
+28,tense,past,She cooked rice.,वं बियां ब्वयेकाल।,Wang biyan bwayekal.,S(erg) + O + V-past,vang = she (ergative),intermediate
+29,tense,future,I will eat tomorrow.,जि ताःया न्हि चाये।,Ji tahya nhi chaye.,S + time + V-future,chaye = will eat,beginner
+30,tense,future,She will come.,व वये।,Wa waye.,S + V-future,waye = will come,beginner
+31,tense,future,We will go to Bhaktapur.,जिपिं खोपिं वने।,Jiping khoping wane.,S + place + V-future,wane = will go,beginner
+32,tense,future,It will rain today.,थ्व न्हि झ्वः च्ये।,Thwa nhi jhwah chye.,time + S + V-future,chye = will fall,intermediate
+33,tense,future,Ram will study hard.,राम मरिखन् ल्हाये।,Ram marikhan lhaye.,S + adv + V-future,marikhan = hard/seriously,intermediate
+34,questions,yes-no,Are you eating?,छि चायेगु दु?,Chhi chayegu du?,S + V + du,"du = existential, turns statement to question",beginner
+35,questions,yes-no,Did you go?,छि वनाल?,Chhi wanal?,S + V-past + ?,rising intonation marks question,beginner
+36,questions,what,What is this?,थ्व छु खः?,Thwa chhu khah?,dem + Q + copula,chhu = what,beginner
+37,questions,what,What do you eat?,छि छु चायेगु?,Chhi chhu chayegu?,S + Q + V,Q word in object position,beginner
+38,questions,who,Who is that?,थे सुं खः?,The su-ng khah?,dem + Q + copula,su-ng = who (subject),beginner
+39,questions,who,Who came?,सुं वयाल?,Su-ng wayal?,Q + V-past,ergative who in past,beginner
+40,questions,where,Where do you live?,छि खः थायेगु?,Chhi khah thayegu?,S + Q(loc) + V,khah = where,beginner
+41,questions,where,Where is the temple?,देगः खः दु?,Degah khah du?,S + Q(loc) + existential,du = existential locative,beginner
+42,questions,when,When will you come?,छि बले वये?,Chhi bale waye?,S + Q(time) + V-future,bale = when,beginner
+43,questions,how,How are you doing?,छि छुगु थें दु?,Chhi chhugu then du?,S + Q(manner) + existential,chhugu = how/what kind,beginner
+44,questions,how much,How much does it cost?,थ्व तःमाः छुगु?,Thwa tahmah chhugu?,dem + N + Q,price question pattern,beginner
+45,questions,why,Why are you crying?,छि छुकथं क्वाहाँ यायेगु?,Chhi chhukathan kwaha yayegu?,S + Q(reason) + V,chhukathan = why,intermediate
+46,negation,simple,I don't eat meat.,जि सा चायेमखु।,Ji sa chayemakhu.,S + O + V-neg,ma + verb = negation,beginner
+47,negation,simple,She is not here.,व थाय् मदु।,Wa thay madu.,S + loc + neg-exist,ma + du = not here,beginner
+48,negation,simple,This is not water.,थ्व लः मखु।,Thwa lah makhu.,dem + N + neg-copula,makhu = is not,beginner
+49,negation,simple,I don't know.,जि थुयेमाःगु।,Ji thuyemahgu.,S + V-neg,negated verb form,beginner
+50,negation,past,I did not go.,जि वनाये मखु।,Ji wanaye makhu.,S + V-past + neg,past negation pattern,intermediate
+51,negation,past,She did not eat.,वं चायेकाये मखु।,Wang chayekaye makhu.,S(erg) + V-past + neg,past transitive negation,intermediate
+52,negation,prohibition,Don't go there.,थे वनेमा।,The wanemaa.,loc + V-prohib,ma suffix = prohibition,beginner
+53,negation,prohibition,Don't speak loudly.,छताःकथं धायेमा।,Chhatakathan dhayemaa.,adv + V-prohib,prohibition with adverb,intermediate
+54,imperatives,polite,Please sit down.,थायेमा क्वथायेमा।,Thayema kwothayema.,V-polite-imperative,soft request form,beginner
+55,imperatives,polite,Please come here.,थाय् वयेमा।,Thay wayema.,loc + V-polite-imperative,wayema = please come,beginner
+56,imperatives,polite,Please give me water.,जित लः दयेमा।,Jita lah dayema.,IO + O + V-polite-imperative,jita = to me,beginner
+57,imperatives,direct,Eat!,चा!,Cha!,V-imperative,short imperative,beginner
+58,imperatives,direct,Come!,व!,Wa!,V-imperative,direct command,beginner
+59,imperatives,direct,Go quickly!,ख्यलय् वन!,Khyalay wan!,adv + V-imperative,adverb + command,beginner
+60,imperatives,suggestion,Let's go.,जिपिं वने।,Jiping wane.,S(incl) + V,inclusive we = suggestion,beginner
+61,imperatives,suggestion,Let's eat together.,जिपिं सकल चाये।,Jiping sakal chaye.,S(incl) + adv + V,sakal = together,beginner
+62,copula,identity,I am a student.,जि छात्र खः।,Ji chhaatra khah.,S + N + khah,khah = identity copula,beginner
+63,copula,identity,She is a teacher.,व गुरु खः।,Wa guru khah.,S + N + khah,predicate noun,beginner
+64,copula,identity,This is a temple.,थ्व देगः खः।,Thwa degah khah.,dem + N + khah,demonstrative subject,beginner
+65,copula,location,The book is on the table.,सफु मेजय् दु।,Saphu mejay du.,S + loc + du,du = existential/locative copula,beginner
+66,copula,location,Ram is at home.,राम च्वंय् दु।,Ram chwanay du.,S + loc + du,locative suffix -ay,beginner
+67,copula,possession,I have a book.,जिथाय् सफु दु।,Jithay saphu du.,S-poss + O + du,jithay = at me = I have,intermediate
+68,copula,possession,She has money.,वथाय् तःमाः दु।,Wathay tahmah du.,S-poss + O + du,possession via locative,intermediate
+69,copula,attribute,The flower is beautiful.,स्वयाः सुंदर खः।,Swayah sundara khah.,S + Adj + khah,adjectival predicate,beginner
+70,adjectives,attributive,This is a big house.,थ्व थकाली च्वं खः।,Thwa thakali chwa khah.,dem + Adj + N + khah,adjective before noun,beginner
+71,adjectives,attributive,She has beautiful eyes.,वगु मि सुंदर खः।,Wagu mi sundara khah.,poss + N + Adj + khah,adjective after noun,beginner
+72,adjectives,comparative,This is bigger than that.,थ्व थे न्ह्यागु थकाली खः।,Thwa the nhyagu thakali khah.,S + than-marker + Adj-comp,comparison structure,intermediate
+73,adjectives,superlative,This is the most beautiful.,थ्व सर्वाधिक सुंदर खः।,Thwa sarvadhik sundara khah.,dem + superl + Adj,superlative adverb,intermediate
+74,adjectives,predicative,The food is delicious.,खाजा मिठो खः।,Khaja mitho khah.,S + Adj + khah,predicate adjective,beginner
+75,adjectives,predicative,The water is cold.,लः स्यांगु खः।,Lah syangu khah.,S + Adj + khah,temperature adjective,beginner
+76,adverbs,manner,She speaks slowly.,व न्हापाय् धायेगु।,Wa nhapay dhayegu.,S + adv(manner) + V,adverb before verb,beginner
+77,adverbs,manner,He runs fast.,व ख्यलय् दाहाँ धायेगु।,Wa khyalay daha dhayegu.,S + adv(manner) + V,speed adverb,beginner
+78,adverbs,frequency,I always eat breakfast.,जि सतय् भिंचागु खाजा चायेगु।,Ji satay bhinchagu khaja chayegu.,S + adv(freq) + O + V,frequency adverb,intermediate
+79,adverbs,frequency,She never lies.,व सकलय् देखाथें धायेमखु।,Wa sakalay dekhathey dhayemakhu.,S + adv(neg) + V-neg,double negation avoided,intermediate
+80,adverbs,time,I came here yesterday.,जि न्हापाया न्हि थाय् वयाल।,Ji nhapaya nhi thay wayal.,S + time + loc + V-past,time adverb initial or mid,beginner
+81,adverbs,degree,She is very beautiful.,व न्ह्याकन सुंदर खः।,Wa nhyakan sundara khah.,S + degree-adv + Adj + copula,nhyakan = very,beginner
+82,postpositions,locative,I am sitting in the house.,जि च्वंय् थाःगु दु।,Ji chwanay thahgu du.,S + N-loc + V,ay = locative postposition,intermediate
+83,postpositions,direction,She went to the temple.,व देगःय् वनाल।,Wa degahay wanal.,S + N-dir + V-past,y = directional postposition,intermediate
+84,postpositions,ablative,He came from school.,व विद्यालयथाय् वयाल।,Wa vidyalayathay wayal.,S + N-abl + V-past,thay = from (ablative),intermediate
+85,postpositions,instrumental,I eat with a spoon.,जि चम्चाकथं चायेगु।,Ji chamchakathan chayegu.,S + N-instr + V,kathan = with (instrumental),intermediate
+86,postpositions,benefactive,I made this for you.,जिं थ्व छित दयेकाल।,Ji-ng thwa chhita dayekal.,S(erg) + O + IO-ben + V-past,chhita = for you,intermediate
+87,postpositions,genitive,This is Ram's book.,थ्व रामगु सफु खः।,Thwa ramgu saphu khah.,dem + N-gen + N + copula,gu = genitive marker,beginner
+88,conjunctions,and,Ram and Sita came.,राम व सीता वयाल।,Ram wa Sita wayal.,N + conj + N + V,wa = and (subject conjoiner),beginner
+89,conjunctions,and,I eat and drink.,जि चायेगु व ज्यायेगु।,Ji chayegu wa jyayegu.,V + conj + V,verb phrase conjunction,beginner
+90,conjunctions,but,I am hungry but there is no food.,जि क्षुधाय् दु तर खाजा मदु।,Ji kshudhay du tara khaja madu.,clause + conj + clause,tara = but,intermediate
+91,conjunctions,because,I didn't go because it rained.,झ्वः च्याःसा जि वनाये मखु।,Jhwah chyahsa ji wanaye makhu.,cause-clause + conj + main-clause,sa = because/since,intermediate
+92,conjunctions,if,"If you come, I will be happy.",छि वयेसा जि सुखी जुये।,Chhi wayesa ji sukhi juye.,cond-clause + main-clause,sa = conditional 'if',intermediate
+93,conjunctions,or,Do you want tea or water?,छित चिया वा लः लायेगु?,Chhita chiya wa lah layegu?,N + conj + N + V,wa = or (in questions),intermediate
+94,conjunctions,so,"It rained, so I stayed home.",झ्वः च्याःसा जि च्वंय् थाःगु।,Jhwah chyahsa ji chwanay thahgu.,cause-clause + result-clause,resultative clause chain,intermediate
+95,conjunctions,when,"When I was young, I danced.",जि पुच्छर्यागु बेलाय् त्यायेकाल।,Ji puchhariyagu belay tyayekal.,time-clause + main-clause,temporal conjunction,advanced
+96,relative_clauses,subject,The man who came is my father.,वयाःगु म्हसिकः जिगु अबु खः।,Wayahgu mhosikah jigu abu khah.,RC(V-rel) + N + cop,gu = relative clause nominalizer,advanced
+97,relative_clauses,object,The book that I read was good.,जिं ल्हायेकाःगु सफु भिंगु जुल।,Ji-ng lhayekahgu saphu bhingu jul.,RC(S-erg + V-rel) + N + pred,gu nominalizes clause,advanced
+98,relative_clauses,place,The place where she lives is beautiful.,व थाःगु थाय् सुंदर खः।,Wa thahgu thay sundara khah.,RC(S + V-rel) + N(place) + pred,relative clause before head noun,advanced
+99,modals,ability,I can speak Newari.,जि नेवारी धाये फायेगु।,Ji Newari dhaye phayegu.,S + O + V + phayegu,phayegu = can (ability),intermediate
+100,modals,ability,She cannot come today.,व थ्व न्हि वये मफायेगु।,Wa thwa nhi waye maphayegu.,S + time + V + neg-modal,maphayegu = cannot,intermediate
+101,modals,permission,May I come in?,जि वये फु?,Ji waye phu?,S + V + modal-Q,phu = permission question,intermediate
+102,modals,obligation,You must eat.,छिं चायेकेमाः।,Chhi-ng chayekemah.,S(erg) + V + obligation,mah = must/obligation,intermediate
+103,modals,obligation,We should not be late.,जिपिं ताकाने मखु।,Jiping takane makhu.,S + V + neg-modal,obligation negation,intermediate
+104,modals,want,I want to learn Newari.,जि नेवारी ल्हाये लायेगु।,Ji Newari lhaye layegu.,S + O + V-inf + want,layegu = want,intermediate
+105,modals,want,She wants to go home.,व च्वंय् वने लायेगु।,Wa chwanay wane layegu.,S + loc + V-inf + want,infinitive + want,intermediate
+106,numbers,cardinal,I have two books.,जिथाय् नि सफु दु।,Jithay ni saphu du.,S-poss + num + N + existential,num before noun,beginner
+107,numbers,cardinal,She has three children.,वथाय् सो मचा दु।,Wathay so macha du.,S-poss + num + N + existential,num before noun,beginner
+108,numbers,ordinal,This is the first lesson.,थ्व तिगु पाठ खः।,Thwa tigu path khah.,dem + ordinal + N + copula,tigu = first (ordinal),intermediate
+109,numbers,counting,There are five temples here.,थाय् न्या देगः दु।,Thay nya degah du.,loc + num + N + existential,existential counting,beginner
+110,time_expressions,clock,It is two o'clock.,नि बजे खः।,Ni baje khah.,num + baje + copula,baje = o'clock,beginner
+111,time_expressions,clock,I wake up at six.,जि खु बजे उठेगु।,Ji khu baje uthegu.,S + time + V,time expression,beginner
+112,time_expressions,duration,I studied for two hours.,जि नि घन्टा ल्हायेकाल।,Ji ni ghanta lhayekal.,S + duration + V-past,duration before verb,intermediate
+113,time_expressions,sequence,"First eat, then go.","न्हापाः चाय्, थ्व न्ह्यसाः वन।","Nhapah chay, thwa nhyasah wan.","adv + V, adv + V",sequence with adverbs,intermediate
+114,directions,asking,Where is the market?,बजार खः दु?,Bajar khah du?,N + Q(loc) + existential,location question,beginner
+115,directions,giving,Go straight ahead.,छाःकथं वन।,Chhahkathan wan.,adv(direction) + V-imperative,direction command,beginner
+116,directions,giving,Turn left.,वायें थ्वःन।,Wayey thwahan.,direction + V-imperative,turn command,beginner
+117,directions,giving,The school is near the temple.,विद्यालय देगःया छेँपाखे दु।,Vidyalaya degahya chhenpakhe du.,S + N-gen + N(proximity) + exist,proximity expression,intermediate
+118,shopping,price,How much does this cost?,थ्व तःमाः छुगु?,Thwa tahmah chhugu?,dem + N(price) + Q,price question,beginner
+119,shopping,price,It costs one hundred rupees.,थ्व तम रुपैया खः।,Thwa tama rupaya khah.,dem + num + N(currency) + copula,price statement,beginner
+120,shopping,request,Give me two of these.,थ्व नि दयेमा।,Thwa ni dayema.,dem + num + V-polite-imp,purchase request,beginner
+121,shopping,bargaining,Can you lower the price?,तःमाः क्वकायेफु?,Tahmah kwakayephu?,N + V-modal-Q,bargaining question,intermediate
+122,health,symptoms,My head hurts.,जिगु सिं न्ह्याबोगु।,Jigu si nhyabogu.,S-poss + body-part + V,pain expression,beginner
+123,health,symptoms,I am sick.,जि न्ह्येबोगु।,Ji nhyebogu.,S + Adj,sickness adjective,beginner
+124,health,seeking help,I need a doctor.,जित डाक्टर लाये।,Jita doctor laye.,IO + N + V(need),need expression,beginner
+125,health,advice,You should rest.,छि थाने मा।,Chhi thane maa.,S + V-should,advice/obligation,intermediate
+126,culture,festivals,We celebrate Indra Jatra.,जिपिं इन्द्र जात्रा यायेगु।,Jiping Indra Jatra yayegu.,S + N(festival) + V,yayegu = do/celebrate,beginner
+127,culture,festivals,The festival is very beautiful.,जात्रा न्ह्याकन सुंदर खः।,Jatra nhyakan sundara khah.,S + degree + Adj + copula,festival description,beginner
+128,culture,tradition,The Newar community lives in Kathmandu Valley.,नेवार समुदाय येँ उपत्यकाय् थाःगु दु।,Newar samuday yen upatyakay thahgu du.,S + loc + V-rel + exist,community location,intermediate
+129,culture,tradition,Newari food is delicious.,नेवारी खाजा मिठो खः।,Newari khaja mitho khah.,N(adj) + N + Adj + copula,cultural food,beginner
+130,culture,tradition,We preserve our language.,जिपिं जिपिंगु भाषा रक्षा यायेगु।,Jiping jipingu bhasa raksha yayegu.,S + S-poss + N + V,language preservation,intermediate

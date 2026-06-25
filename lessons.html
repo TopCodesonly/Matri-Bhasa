@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lessons — Matri Bhasa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo dev">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="languages.html" class="active">Languages</a>
+    <a href="badges.html">Badges</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="chip streak" id="chipStreak" title="Day streak"><span class="chip-icon">🔥</span><span id="streakVal">0</span></div>
+    <div class="chip xp" id="chipXp" title="Total XP"><span class="chip-icon">⚡</span><span id="xpVal">0</span></div>
+    <div class="chip level" id="chipLevel" title="Level"><span class="chip-icon">🏅</span><span id="levelVal">Seedling</span></div>
+  </div>
+</nav>
+
+<div class="screen">
+  <div class="screen-inner">
+    <div class="screen-head">
+      <p class="section-eyebrow"><a href="languages.html" style="color:var(--green-light);text-decoration:none">← Languages</a> · Nepali</p>
+      <h1 class="section-title">The path to fluency</h1>
+    </div>
+
+    <!-- level progress -->
+    <div class="level-progress">
+      <div class="level-progress-head">
+        <span class="level-progress-now" id="lpNow">🌱 Seedling</span>
+        <span class="level-progress-next" id="lpNext">0 / 60 XP to Sprout</span>
+      </div>
+      <div class="level-bar"><div class="level-bar-fill" id="lpFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="tier-grid" id="tierGrid"><!-- rendered by JS --></div>
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast"><span>⚡</span><span id="xpToastText">+10 XP</span></div>
+
+<script src="data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script>
+  const state = loadState();
+  renderHud(state);
+  consumeXpParam();
+
+  /* level progress bar */
+  const lv = getLevel(state);
+  document.getElementById('lpNow').textContent = lv.level.icon + ' ' + lv.level.name;
+  document.getElementById('lpFill').style.width = lv.pct + '%';
+  document.getElementById('lpNext').textContent = lv.next
+    ? `${lv.intoLevel} / ${lv.span} XP to ${lv.next.name} ${lv.next.icon}`
+    : 'Max level reached 🏆';
+
+  /* path map */
+  const grid = document.getElementById('tierGrid');
+  TIERS.forEach(tier => {
+    const lessons = LESSONS.filter(l => l.tier === tier.tier);
+    const tierUnlocked = state.xp >= tier.reqXp;
+    const tierEl = document.createElement('div');
+    tierEl.className = 'tier';
+    tierEl.innerHTML = `
+      <div class="tier-head">
+        <span class="tier-name">${tier.name}</span>
+        ${tierUnlocked ? '' : `<span class="tier-lock">🔒 ${tier.reqXp} XP</span>`}
+        <span class="tier-line"></span>
+      </div>
+      <div class="tier-nodes"></div>`;
+    const nodesWrap = tierEl.querySelector('.tier-nodes');
+    lessons.forEach(lesson => {
+      const rec = lessonRecord(state, lesson.id);
+      const unlocked = isUnlocked(state, lesson);
+      let cls = 'locked', icon = '🔒', click = '';
+      if (rec) { cls = 'done'; icon = lesson.emoji; click = `onclick="goLesson('${lesson.id}')"`; }
+      else if (unlocked) { cls = 'available'; icon = lesson.emoji; click = `onclick="goLesson('${lesson.id}')"`; }
+      const stars = rec ? rec.stars : 0;
+      const starsHtml = rec
+        ? `<div class="node-stars">${[0,1,2].map(i => `<span class="s ${i < stars ? 'lit' : ''}">★</span>`).join('')}</div>`
+        : (unlocked ? `<div class="node-stars"></div>` : `<div class="node-req">${lesson.reqXp} XP</div>`);
+      const node = document.createElement('div');
+      node.className = 'node';
+      node.innerHTML = `
+        <button class="node-circle ${cls}" ${click} ${cls === 'locked' ? 'disabled' : ''}>${icon}</button>
+        <span class="node-name">${lesson.name}</span>
+        ${starsHtml}`;
+      nodesWrap.appendChild(node);
+    });
+    grid.appendChild(tierEl);
+  });
+  function goLesson(id) { location.href = 'lesson.html?lang=nepali&lesson=' + id; }
+</script>
+</body>
+</html>

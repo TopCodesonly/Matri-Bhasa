@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesson — Matri Bhasa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="lesson-body">
+
+<!-- TOPBAR -->
+<div class="lesson-topbar">
+  <a href="lessons.html" class="close-btn" title="Quit lesson">✕</a>
+  <div class="topbar-bar"><div class="topbar-fill" id="topbarFill"></div></div>
+  <div class="combo" id="combo" style="display:none"></div>
+  <div class="hearts" id="hearts"></div>
+</div>
+
+<!-- MAIN -->
+<div class="lesson-main">
+  <div class="ex-card" id="exCard"><!-- rendered by JS --></div>
+  <div class="feedback" id="feedback">
+    <span class="feedback-icon" id="fbIcon">✓</span>
+    <div>
+      <div class="feedback-title" id="fbTitle">Correct!</div>
+      <div class="feedback-detail" id="fbDetail"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY ACTION BAR -->
+<div class="action-bar">
+  <button class="btn btn-green" id="actionBtn" disabled onclick="onAction()">Check</button>
+</div>
+
+<!-- COMPLETION OVERLAY -->
+<div class="overlay complete" id="completeOverlay">
+  <div class="overlay-emoji" id="cEmoji">🎉</div>
+  <div class="overlay-title">Lesson complete!</div>
+  <div class="overlay-sub" id="cSub">Great work — keep it going.</div>
+  <div class="overlay-stars" id="cStars"><span class="s">★</span><span class="s">★</span><span class="s">★</span></div>
+  <div class="overlay-stats">
+    <div class="overlay-stat"><div class="overlay-stat-num" id="cXp">+0</div><div class="overlay-stat-label">XP earned</div></div>
+    <div class="overlay-stat"><div class="overlay-stat-num" id="cStreak">🔥 0</div><div class="overlay-stat-label">Day streak</div></div>
+    <div class="overlay-stat"><div class="overlay-stat-num" id="cAcc">0/0</div><div class="overlay-stat-label">Correct</div></div>
+  </div>
+  <div class="overlay-actions">
+    <button class="btn btn-saffron" onclick="goHome()">Keep learning →</button>
+    <button class="btn btn-outline" style="color:#fff;border-color:rgba(247,242,232,0.5)" onclick="restart()">Practice again</button>
+  </div>
+</div>
+
+<!-- FAIL OVERLAY -->
+<div class="overlay fail" id="failOverlay">
+  <div class="overlay-emoji">💔</div>
+  <div class="overlay-title">Out of hearts!</div>
+  <div class="overlay-sub">Don't worry — every master was once a beginner. Try again!</div>
+  <div class="overlay-actions">
+    <button class="btn btn-saffron" onclick="restart()">Try again</button>
+    <button class="btn btn-outline" style="color:#fff;border-color:rgba(247,242,232,0.5)" onclick="goHomeNoXp()">Home</button>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<script src="data.js"></script>
+<script src="newari-data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script>
+  requireAuth();                 // bounce to login if not signed in
+  const state = loadState();
+  const MAX_HEARTS = 3;
+
+  /* ── locate the lesson (Nepali or Newari) ── */
+  const params = new URLSearchParams(location.search);
+  const lessonId = params.get('lesson');
+  const lang = params.get('lang') === 'newari' ? 'newari' : 'nepali';
+  const dataset = lang === 'newari' ? NEWARI_LESSONS : LESSONS;
+  const backPage = lang === 'newari' ? 'newari.html' : 'lessons.html';
+  const lesson = dataset.find(l => l.id === lessonId);
+  if (!lesson) { location.href = 'languages.html'; }
+  // route the quit button back to the right course
+  document.querySelector('.close-btn').setAttribute('href', backPage);
+
+  /* ── session state ── */
+  let queue, totalEx, mastered, hearts, sessionXp, correctCount, totalAttempts, streak, bestStreak;
+  let phase = 'answer';       // 'answer' → awaiting Check | 'continue' → result shown
+  let current = null;         // current exercise
+  let selected = null;        // MCQ-style chosen value (MATCH / RULE / SCRIPT)
+  let built = [];             // BUILD assembled tokens
+  let filled = '';            // FILL typed value
+
+  function initSession() {
+    queue = lesson.exercises.map(e => ({ ...e }));   // shallow copies (re-queueable)
+    totalEx = queue.length;
+    mastered = 0; hearts = MAX_HEARTS; sessionXp = 0; correctCount = 0; totalAttempts = 0;
+    streak = 0; bestStreak = 0;
+    document.getElementById('completeOverlay').classList.remove('show');
+    document.getElementById('failOverlay').classList.remove('show');
+    renderHearts();
+    nextExercise();
+  }
+
+  /* ── SPEECH ── */
+  function speakText(text, btn) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ne-NP'; u.rate = 0.85;
+    if (btn) { btn.classList.add('speaking'); u.onend = u.onerror = () => btn.classList.remove('speaking'); }
+    speechSynthesis.speak(u);
+  }
+
+  /* ── HUD ── */
+  function renderHearts() {
+    let out = '';
+    for (let i = 0; i < MAX_HEARTS; i++)
+      out += `<span class="heart ${i < hearts ? '' : 'lost'}">${i < hearts ? '❤️' : '🩶'}</span>`;
+    document.getElementById('hearts').innerHTML = out;
+  }
+  function renderProgress() {
+    document.getElementById('topbarFill').style.width = (mastered / totalEx * 100) + '%';
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+
+  /* ── RENDER NEXT EXERCISE ── */
+  function nextExercise() {
+    current = queue[0];
+    phase = 'answer'; selected = null; built = []; filled = '';
+    renderProgress();
+    renderCombo();
+    document.getElementById('feedback').classList.remove('show');
+
+    const card = document.getElementById('exCard');
+    card.className = 'ex-card';
+    const t = current.type;
+    if (t === 'BUILD') card.innerHTML = renderBuild(current);
+    else if (t === 'SELECT') card.innerHTML = renderSelect(current);
+    else if (t === 'FILL') card.innerHTML = renderFill(current);
+    else if (t === 'RULE') card.innerHTML = renderRule(current);
+    else if (t === 'SCRIPT') card.innerHTML = renderScript(current);
+    else card.innerHTML = renderMatch(current);
+    if (t === 'FILL') setTimeout(() => { const i = document.getElementById('fillInput'); if (i) i.focus(); }, 30);
+
+    const btn = document.getElementById('actionBtn');
+    btn.className = 'btn btn-green';
+    btn.textContent = 'Check';
+    btn.disabled = true;
+  }
+
+  /* ── streak combo ── */
+  function streakMultiplier(s) { if (s >= 10) return 3; if (s >= 6) return 2; if (s >= 3) return 1.5; return 1; }
+  function renderCombo() {
+    const c = document.getElementById('combo');
+    if (streak >= 2) { c.style.display = ''; c.textContent = '🔥 ' + streak; c.classList.toggle('hot', streak >= 3); }
+    else c.style.display = 'none';
+  }
+
+  /* ── BUILD ── */
+  function renderBuild(ex) {
+    const bank = shuffle(ex.wordBank);
+    return `
+      <div class="type-chip">🧩 Arrange</div>
+      <div class="ex-instruction">${ex.instruction}</div>
+      <div class="build-target">${ex.english}</div>
+      <div class="build-note">Tap the tiles in the right order</div>
+      <div class="answer-zone" id="answerZone"></div>
+      <div class="word-bank" id="wordBank">
+        ${bank.map((t, i) => `<button class="tile" data-token="${t}" data-i="${i}" onclick="pickTile(this)">${t}</button>`).join('')}
+      </div>`;
+  }
+  function pickTile(el) {
+    if (phase !== 'answer') return;
+    el.classList.add('used');
+    built.push({ token: el.dataset.token, ref: el });
+    const zone = document.getElementById('answerZone');
+    const placed = document.createElement('button');
+    placed.className = 'tile';
+    placed.textContent = el.dataset.token;
+    placed.onclick = () => removeTile(placed, el);
+    placed._bankRef = el;
+    zone.appendChild(placed);
+    syncBuildBtn();
+  }
+  function removeTile(placed, bankEl) {
+    if (phase !== 'answer') return;
+    bankEl.classList.remove('used');
+    built = built.filter(b => b.ref !== bankEl);
+    placed.remove();
+    syncBuildBtn();
+  }
+  function syncBuildBtn() {
+    document.getElementById('actionBtn').disabled = built.length === 0;
+  }
+
+  /* ── SELECT ── */
+  function renderSelect(ex) {
+    const opts = shuffle(ex.options);
+    const promptHtml = ex.prompt.replace('_____', '<span class="select-blank" id="selBlank">&nbsp;</span>');
+    return `
+      <div class="type-chip">✏️ Choose</div>
+      <div class="ex-instruction">${ex.instruction}</div>
+      <div class="select-prompt dev">${promptHtml}</div>
+      <div class="select-context">${ex.english}</div>
+      <div class="select-options" id="selectOptions">
+        ${opts.map(o => `<button class="tile dev" data-token="${o}" onclick="pickSelect(this)">${o}</button>`).join('')}
+      </div>`;
+  }
+  function pickSelect(el) {
+    if (phase !== 'answer') return;
+    document.querySelectorAll('#selectOptions .tile').forEach(t => t.classList.remove('opt-selected'));
+    el.classList.add('opt-selected');
+    selected = el.dataset.token;
+    const blank = document.getElementById('selBlank');
+    blank.textContent = selected; blank.classList.add('filled');
+    document.getElementById('actionBtn').disabled = false;
+  }
+
+  /* ── MATCH ── */
+  function renderMatch(ex) {
+    const opts = shuffle(ex.options);
+    return `
+      <div class="type-chip">🔍 Translate</div>
+      <div class="ex-instruction">${ex.instruction}</div>
+      <div class="match-prompt-row">
+        <span class="match-prompt dev">${ex.prompt}</span>
+        <button class="speak-btn" onclick="speakText('${ex.prompt}', this)" title="Hear it">🔊</button>
+      </div>
+      <div class="match-grid" id="matchGrid">
+        ${opts.map(o => `<button class="mcq" data-val="${o}" onclick="pickMatch(this)">${o}</button>`).join('')}
+      </div>`;
+  }
+  function pickMatch(el) {
+    if (phase !== 'answer') return;
+    document.querySelectorAll('#matchGrid .mcq').forEach(m => m.classList.remove('opt-selected'));
+    el.classList.add('opt-selected');
+    selected = el.dataset.val;
+    document.getElementById('actionBtn').disabled = false;
+  }
+
+  /* ── RULE CARD → MCQ (explicit-first: name the rule, show examples, then test) ── */
+  function renderRule(ex) {
+    return `
+      <div class="rule-card">
+        <div class="rule-label">📘 Learn this</div>
+        <div class="rule-text">${ex.rule}</div>
+        <div class="rule-examples">${(ex.examples || []).map(e => `<div class="rule-example">${e}</div>`).join('')}</div>
+      </div>
+      <div class="ex-instruction">${ex.instruction || 'Now answer:'}</div>
+      <div class="rule-question">${ex.question}</div>
+      <div class="match-grid" id="matchGrid">
+        ${shuffle(ex.options).map(o => `<button class="mcq" data-val="${o}" onclick="pickMatch(this)">${o}</button>`).join('')}
+      </div>`;
+  }
+
+  /* ── SCRIPT: Devanagari → romanization recognition (no typing) ── */
+  function renderScript(ex) {
+    return `
+      <div class="type-chip">🔤 Devanagari</div>
+      <div class="ex-instruction">${ex.instruction || 'Which sound does this make?'}</div>
+      <div class="match-prompt-row">
+        <span class="match-prompt dev">${ex.prompt}</span>
+        <button class="speak-btn" onclick="speakText('${ex.prompt}', this)" title="Hear it">🔊</button>
+      </div>
+      <div class="match-grid" id="matchGrid">
+        ${shuffle(ex.options).map(o => `<button class="mcq" data-val="${o}" onclick="pickMatch(this)">${o}</button>`).join('')}
+      </div>`;
+  }
+
+  /* ── FILL: typed production (freeform or exact match) ── */
+  function renderFill(ex) {
+    const prompt = (ex.prompt || '').replace('_____', '<span class="fill-gap">______</span>');
+    return `
+      <div class="type-chip">⌨️ Fill in the blank</div>
+      <div class="ex-instruction">${ex.instruction || 'Type the answer'}</div>
+      <div class="fill-prompt">${prompt}</div>
+      ${ex.english ? `<div class="fill-context">${ex.english}</div>` : ''}
+      <input id="fillInput" class="fill-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+        placeholder="Type your answer…" oninput="syncFill()"
+        onkeydown="if(event.key==='Enter' && !document.getElementById('actionBtn').disabled) onAction()"/>`;
+  }
+  function syncFill() {
+    filled = document.getElementById('fillInput').value;
+    document.getElementById('actionBtn').disabled = filled.trim().length === 0;
+  }
+  function checkFill(ex, value) {
+    const v = (value || '').trim();
+    if (ex.freeform) return v.length >= (ex.minLength || 2);
+    return (ex.acceptedAnswers || []).map(a => a.toLowerCase()).includes(v.toLowerCase());
+  }
+  function lockFill(correct) {
+    const inp = document.getElementById('fillInput');
+    inp.disabled = true;
+    inp.classList.add(correct ? 'opt-correct' : 'opt-wrong');
+  }
+
+  /* ── ACTION BUTTON (Check → Continue) ── */
+  function onAction() {
+    if (phase === 'answer') checkAnswer();
+    else continueNext();
+  }
+
+  function checkAnswer() {
+    const t = current.type;
+    let correct = false;
+    if (t === 'BUILD') {
+      const assembled = built.map(b => b.token);
+      correct = assembled.length === current.answer.length &&
+        assembled.every((x, i) => x === current.answer[i]);
+      lockBuild(correct);
+    } else if (t === 'SELECT') {
+      correct = selected === current.answer;
+      lockTiles('#selectOptions .tile', current.answer);
+    } else if (t === 'FILL') {
+      correct = checkFill(current, filled);
+      lockFill(correct);
+    } else {                                   // MATCH, RULE, SCRIPT — all MCQ
+      correct = selected === current.answer;
+      lockTiles('#matchGrid .mcq', current.answer, 'data-val');
+    }
+
+    totalAttempts++;
+    const card = document.getElementById('exCard');
+    // production tasks are worth more; streak multiplier on top (×1.5 / ×2 / ×3)
+    const base = (t === 'BUILD' || t === 'SELECT' || t === 'FILL') ? 15 : 10;
+    let gain = 0;
+
+    if (correct) {
+      correctCount++;
+      streak++; bestStreak = Math.max(bestStreak, streak);
+      gain = Math.round(base * streakMultiplier(streak));
+      sessionXp += gain;
+      awardXp(state, gain);
+      card.classList.remove('flash-bad'); void card.offsetWidth; card.classList.add('flash-ok');
+      current._passed = true;
+    } else {
+      streak = 0;
+      hearts--; renderHearts();
+      card.classList.remove('flash-ok'); void card.offsetWidth; card.classList.add('flash-bad');
+      current._passed = false;
+    }
+    renderCombo();
+    showFeedback(correct, gain);
+
+    phase = 'continue';
+    const btn = document.getElementById('actionBtn');
+    btn.disabled = false;
+    btn.className = 'btn ' + (correct ? 'btn-green' : 'bad');
+    btn.textContent = hearts <= 0 ? 'See results' : 'Continue';
+  }
+
+  function lockBuild(correct) {
+    document.querySelectorAll('#wordBank .tile').forEach(t => t.classList.add('locked'));
+    document.querySelectorAll('#answerZone .tile').forEach((t, i) => {
+      t.classList.add('locked');
+      t.classList.add(t.textContent === current.answer[i] ? 'opt-correct' : 'opt-wrong');
+    });
+  }
+  function lockTiles(sel, answer, attr) {
+    document.querySelectorAll(sel).forEach(t => {
+      t.classList.add('locked');
+      const val = attr ? t.getAttribute(attr) : t.dataset.token;
+      if (val === answer) t.classList.add('opt-correct');
+      else if (val === selected) t.classList.add('opt-wrong');
+    });
+  }
+
+  function answerText(ex) {
+    if (ex.type === 'BUILD') return ex.answer.join(' ');
+    if (ex.type === 'FILL') return ex.freeform ? '(any sensible answer)' : (ex.acceptedAnswers ? ex.acceptedAnswers[0] : ex.answer);
+    return ex.answer;
+  }
+  function showFeedback(correct, gain) {
+    const fb = document.getElementById('feedback');
+    fb.className = 'feedback show ' + (correct ? 'ok' : 'bad');
+    document.getElementById('fbIcon').textContent = correct ? '✓' : '✗';
+    let title = correct ? `Correct!  +${gain} XP` : 'Oops!';
+    if (correct && streak >= 3) title += `  · 🔥 ${streak} streak ×${streakMultiplier(streak)}`;
+    document.getElementById('fbTitle').textContent = title;
+    const detail = current.explanation || current.translation || '';
+    if (correct) {
+      document.getElementById('fbDetail').innerHTML = detail;
+    } else {
+      document.getElementById('fbDetail').innerHTML =
+        `Correct answer: <span class="dev">${answerText(current)}</span>` + (detail ? `<br>${detail}` : '');
+    }
+  }
+
+  function continueNext() {
+    if (hearts <= 0) { failLesson(); return; }
+    const ex = queue.shift();
+    if (ex._passed) {
+      mastered++;
+    } else {
+      ex._passed = undefined;
+      queue.push(ex);      // re-queue missed exercise to the end
+    }
+    if (queue.length === 0) { completeLesson(); return; }
+    nextExercise();
+  }
+
+  /* ── COMPLETE / FAIL ── */
+  function completeLesson() {
+    renderProgress();
+    const stars = Math.max(1, hearts);                  // 1–3 based on hearts left
+    bumpStreak(state);
+    recordLesson(state, lesson.id, stars, sessionXp);
+
+    document.getElementById('cEmoji').textContent = ['😺','🌟','🎉','🏆'][stars] || '🎉';
+    document.getElementById('cSub').textContent = stars === 3
+      ? 'Flawless run — full hearts!' : 'Nicely done. Replay for a perfect 3 stars.';
+    document.getElementById('cXp').textContent = '+' + sessionXp;
+    document.getElementById('cStreak').textContent = '🔥 ' + state.streak;
+    document.getElementById('cAcc').textContent = correctCount + '/' + totalAttempts;
+    document.querySelectorAll('#cStars .s').forEach((s, i) => {
+      s.classList.toggle('lit', i < stars);
+      s.style.animationDelay = (i * 0.15) + 's';
+    });
+    document.getElementById('completeOverlay').classList.add('show');
+    if (stars === 3) fireConfetti();
+  }
+
+  function failLesson() {
+    // attempt still counts toward the record (no stars)
+    recordLesson(state, lesson.id, 0, sessionXp);
+    document.getElementById('failOverlay').classList.add('show');
+  }
+
+  function goHome() { location.href = backPage + '?xp=' + sessionXp; }
+  function goHomeNoXp() { location.href = backPage; }
+  function restart() { initSession(); }
+
+  /* ── CONFETTI ── */
+  function fireConfetti() {
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth; canvas.height = innerHeight;
+    const colors = ['#0D3D2E','#2E8B64','#E8930A','#C4684F','#6B4FA0','#FBE5B8'];
+    const parts = Array.from({ length: 100 }, () => ({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height * 0.5,
+      r: 5 + Math.random() * 6,
+      c: colors[Math.floor(Math.random() * colors.length)],
+      vx: -2 + Math.random() * 4,
+      vy: 3 + Math.random() * 4,
+      tilt: Math.random() * Math.PI,
+      vt: -0.2 + Math.random() * 0.4,
+    }));
+    let frame = 0;
+    (function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      parts.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.tilt += p.vt;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.tilt);
+        ctx.fillStyle = p.c;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.r, p.r * 0.55, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 180) requestAnimationFrame(loop);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    })();
+  }
+
+  /* ── GO ── */
+  initSession();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(command -v python)",
+      "Bash(command -v python3)",
+      "Bash(command -v py)",
+      "Bash(command -v npx)",
+      "Bash(command -v node)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node tools-gen.js)",
+      "Bash(node -e \"var src=require\\('fs'\\).readFileSync\\('newari-data.js','utf8'\\); eval\\(src + '\\\\n;global.__L=NEWARI_LESSONS; global.__T=NEWARI_TIERS;'\\); var L=global.__L,T=global.__T; console.log\\('lessons',L.length,'tiers',T.length\\); console.log\\('L1',L[0].name,L[0].exercises.map\\(e=>e.type\\).join\\(','\\)\\); console.log\\('reqXp L1/L6/L11',L[0].reqXp,L[5].reqXp,L[10].reqXp\\); var b=L[0].exercises.find\\(e=>e.type==='BUILD'\\); console.log\\('build', b&&JSON.stringify\\({en:b.english,answer:b.answer}\\)\\); var r=L[0].exercises[0]; console.log\\('rule.q', r.question, '| opts', r.options.length, '| ans?', r.options.includes\\(r.answer\\)\\);\")"
+    ]
+  }
+}

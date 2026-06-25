@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nepal Bhasa — Word list</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo dev">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="languages.html" class="active">Languages</a>
+    <a href="badges.html">Badges</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="chip streak" id="chipStreak" title="Day streak"><span class="chip-icon">🔥</span><span id="streakVal">0</span></div>
+    <div class="chip xp" id="chipXp" title="Total XP"><span class="chip-icon">⚡</span><span id="xpVal">0</span></div>
+    <div class="chip level" id="chipLevel" title="Level"><span class="chip-icon">🏅</span><span id="levelVal">Seedling</span></div>
+  </div>
+</nav>
+
+<div class="dict-wrap">
+  <div style="text-align:center">
+    <p class="section-eyebrow"><a href="newari.html" style="color:var(--green-light);text-decoration:none">← Lessons</a> · Newari</p>
+    <h1 class="section-title">नेपाल भाषा — Word list</h1>
+    <p class="section-body" style="margin:0 auto">Every word and sentence in the course, with its definition.</p>
+  </div>
+
+  <div class="dict-tabs">
+    <button class="dict-tab active" id="tabWords" onclick="setTab('words')">Words</button>
+    <button class="dict-tab" id="tabSentences" onclick="setTab('sentences')">Sentences</button>
+  </div>
+  <input class="glossary-search" id="search" type="text" placeholder="Search English, Devanagari, or transliteration…" oninput="render()"/>
+  <div class="gloss-count" id="count"></div>
+
+  <div id="wordsView"></div>
+  <div id="sentencesView" class="hidden"></div>
+</div>
+
+<script src="newari-data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script>
+  const state = loadState();
+  renderHud(state);
+
+  let tab = 'words';
+  function setTab(t) {
+    tab = t;
+    document.getElementById('tabWords').classList.toggle('active', t === 'words');
+    document.getElementById('tabSentences').classList.toggle('active', t === 'sentences');
+    document.getElementById('wordsView').classList.toggle('hidden', t !== 'words');
+    document.getElementById('sentencesView').classList.toggle('hidden', t !== 'sentences');
+    render();
+  }
+
+  const norm = s => (s || '').toLowerCase();
+  function matches(q, ...fields) { return !q || fields.some(f => norm(f).includes(q)); }
+
+  function render() {
+    const q = norm(document.getElementById('search').value.trim());
+    if (tab === 'words') renderWords(q); else renderSentences(q);
+  }
+
+  function renderWords(q) {
+    const items = NEWARI_VOCAB.filter(v => matches(q, v.en, v.dev, v.roman, v.cat));
+    // group by category, preserving first-seen order
+    const groups = {}; const order = [];
+    items.forEach(v => { if (!groups[v.cat]) { groups[v.cat] = []; order.push(v.cat); } groups[v.cat].push(v); });
+    document.getElementById('count').textContent = items.length + ' of ' + NEWARI_VOCAB.length + ' words';
+    const html = items.length ? order.map(cat => `
+      <div class="gloss-group">
+        <div class="gloss-cat">${cat.replace(/_/g, ' ')}</div>
+        <div class="gloss-grid">
+          ${groups[cat].map(v => `
+            <div class="gloss-item">
+              <div class="gloss-dev">${v.dev}</div>
+              <div class="gloss-roman">${v.roman}</div>
+              <div class="gloss-en">${v.en}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('') : '<div class="gloss-empty">No matches.</div>';
+    document.getElementById('wordsView').innerHTML = html;
+  }
+
+  function renderSentences(q) {
+    const items = NEWARI_SENTENCES.filter(s => matches(q, s.en, s.dev, s.roman, s.note, s.pattern, s.cat));
+    document.getElementById('count').textContent = items.length + ' of ' + NEWARI_SENTENCES.length + ' sentences';
+    const html = items.length ? `<div class="gloss-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      ${items.map(s => `
+        <div class="gloss-item">
+          <div class="gloss-dev" style="font-size:17px">${s.dev}</div>
+          <div class="gloss-roman">${s.roman}</div>
+          <div class="gloss-en">${s.en}</div>
+          <div class="gloss-note"><strong>${s.pattern || ''}</strong>${s.note ? ' — ' + s.note : ''}</div>
+        </div>`).join('')}
+    </div>` : '<div class="gloss-empty">No matches.</div>';
+    document.getElementById('sentencesView').innerHTML = html;
+  }
+
+  render();
+</script>
+</body>
+</html>

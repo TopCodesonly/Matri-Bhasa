@@ -1,0 +1,1363 @@
+{
+  "meta": {
+    "total": 262,
+    "categories": [
+      "greeting",
+      "number",
+      "family",
+      "body",
+      "color",
+      "food",
+      "nature",
+      "time",
+      "verb",
+      "adjective",
+      "place",
+      "pronoun",
+      "clothing",
+      "object"
+    ],
+    "language": "Nepalbhasa (Newari)",
+    "script": "Devanagari"
+  },
+  "words": {
+    "greeting": [
+      {
+        "english": "hello",
+        "devanagari": "जुजु",
+        "transliteration": "Juju"
+      },
+      {
+        "english": "goodbye",
+        "devanagari": "च्वसा",
+        "transliteration": "Chwasa"
+      },
+      {
+        "english": "thank you",
+        "devanagari": "सुभाय्",
+        "transliteration": "Subhay"
+      },
+      {
+        "english": "yes",
+        "devanagari": "ज्या",
+        "transliteration": "Jya"
+      },
+      {
+        "english": "no",
+        "devanagari": "मखु",
+        "transliteration": "Makhu"
+      },
+      {
+        "english": "please",
+        "devanagari": "क्वथायेमा",
+        "transliteration": "Kwothayema"
+      },
+      {
+        "english": "sorry",
+        "devanagari": "माफ याना",
+        "transliteration": "Mapha yana"
+      },
+      {
+        "english": "welcome",
+        "devanagari": "ल्वह्याना",
+        "transliteration": "Lwhyana"
+      },
+      {
+        "english": "how are you",
+        "devanagari": "छि थें दु?",
+        "transliteration": "Chhi then du?"
+      },
+      {
+        "english": "I am fine",
+        "devanagari": "जि सुथें दु",
+        "transliteration": "Ji suthen du"
+      },
+      {
+        "english": "good morning",
+        "devanagari": "शुभप्रभात",
+        "transliteration": "Shubhaprabhat"
+      },
+      {
+        "english": "good night",
+        "devanagari": "शुभरात्री",
+        "transliteration": "Shubharatri"
+      }
+    ],
+    "number": [
+      {
+        "english": "one",
+        "devanagari": "ति",
+        "transliteration": "Ti"
+      },
+      {
+        "english": "two",
+        "devanagari": "नि",
+        "transliteration": "Ni"
+      },
+      {
+        "english": "three",
+        "devanagari": "सो",
+        "transliteration": "So"
+      },
+      {
+        "english": "four",
+        "devanagari": "पि",
+        "transliteration": "Pi"
+      },
+      {
+        "english": "five",
+        "devanagari": "न्या",
+        "transliteration": "Nya"
+      },
+      {
+        "english": "six",
+        "devanagari": "खु",
+        "transliteration": "Khu"
+      },
+      {
+        "english": "seven",
+        "devanagari": "न्हि",
+        "transliteration": "Nhi"
+      },
+      {
+        "english": "eight",
+        "devanagari": "च्या",
+        "transliteration": "Chya"
+      },
+      {
+        "english": "nine",
+        "devanagari": "गु",
+        "transliteration": "Gu"
+      },
+      {
+        "english": "ten",
+        "devanagari": "थ्व",
+        "transliteration": "Thwa"
+      },
+      {
+        "english": "hundred",
+        "devanagari": "तम",
+        "transliteration": "Tama"
+      },
+      {
+        "english": "thousand",
+        "devanagari": "सहस्र",
+        "transliteration": "Sahasra"
+      },
+      {
+        "english": "zero",
+        "devanagari": "सुन्य",
+        "transliteration": "Sunya"
+      }
+    ],
+    "family": [
+      {
+        "english": "mother",
+        "devanagari": "मां",
+        "transliteration": "Maa"
+      },
+      {
+        "english": "father",
+        "devanagari": "अबु",
+        "transliteration": "Abu"
+      },
+      {
+        "english": "sister",
+        "devanagari": "ज्यामरि",
+        "transliteration": "Jyamari"
+      },
+      {
+        "english": "brother",
+        "devanagari": "भाजु",
+        "transliteration": "Bhaju"
+      },
+      {
+        "english": "son",
+        "devanagari": "मचा",
+        "transliteration": "Macha"
+      },
+      {
+        "english": "daughter",
+        "devanagari": "झि",
+        "transliteration": "Jhi"
+      },
+      {
+        "english": "grandfather",
+        "devanagari": "अजः",
+        "transliteration": "Ajah"
+      },
+      {
+        "english": "grandmother",
+        "devanagari": "अजिमा",
+        "transliteration": "Ajima"
+      },
+      {
+        "english": "husband",
+        "devanagari": "सिं",
+        "transliteration": "Sing"
+      },
+      {
+        "english": "wife",
+        "devanagari": "मिसा",
+        "transliteration": "Misa"
+      },
+      {
+        "english": "child",
+        "devanagari": "मचा",
+        "transliteration": "Macha"
+      },
+      {
+        "english": "family",
+        "devanagari": "क्वथि",
+        "transliteration": "Kwothi"
+      },
+      {
+        "english": "uncle",
+        "devanagari": "काजु",
+        "transliteration": "Kaju"
+      },
+      {
+        "english": "aunt",
+        "devanagari": "काजि",
+        "transliteration": "Kaji"
+      }
+    ],
+    "body": [
+      {
+        "english": "head",
+        "devanagari": "सिं",
+        "transliteration": "Si"
+      },
+      {
+        "english": "eye",
+        "devanagari": "मि",
+        "transliteration": "Mi"
+      },
+      {
+        "english": "ear",
+        "devanagari": "न्ह्यासा",
+        "transliteration": "Nhyasa"
+      },
+      {
+        "english": "nose",
+        "devanagari": "न्ह्यु",
+        "transliteration": "Nhyu"
+      },
+      {
+        "english": "mouth",
+        "devanagari": "थ्याथु",
+        "transliteration": "Thyathu"
+      },
+      {
+        "english": "hand",
+        "devanagari": "लः",
+        "transliteration": "Lah"
+      },
+      {
+        "english": "leg",
+        "devanagari": "प्याखं",
+        "transliteration": "Pyakha"
+      },
+      {
+        "english": "heart",
+        "devanagari": "सफु",
+        "transliteration": "Saphu"
+      },
+      {
+        "english": "stomach",
+        "devanagari": "त्वाः",
+        "transliteration": "Twah"
+      },
+      {
+        "english": "back",
+        "devanagari": "चिकं",
+        "transliteration": "Chika"
+      },
+      {
+        "english": "hair",
+        "devanagari": "क्वःछि",
+        "transliteration": "Kwahchhi"
+      },
+      {
+        "english": "tooth",
+        "devanagari": "खिं",
+        "transliteration": "Khi"
+      },
+      {
+        "english": "tongue",
+        "devanagari": "ल्वाःसा",
+        "transliteration": "Lwahsa"
+      },
+      {
+        "english": "neck",
+        "devanagari": "गुलः",
+        "transliteration": "Gulah"
+      },
+      {
+        "english": "shoulder",
+        "devanagari": "काँ",
+        "transliteration": "Ka"
+      },
+      {
+        "english": "finger",
+        "devanagari": "लमरि",
+        "transliteration": "Lamari"
+      },
+      {
+        "english": "face",
+        "devanagari": "न्ह्यः",
+        "transliteration": "Nhyah"
+      }
+    ],
+    "color": [
+      {
+        "english": "red",
+        "devanagari": "ल्ह्याःमा",
+        "transliteration": "Lhyahma"
+      },
+      {
+        "english": "blue",
+        "devanagari": "निलामा",
+        "transliteration": "Nilama"
+      },
+      {
+        "english": "green",
+        "devanagari": "हरियामा",
+        "transliteration": "Hariyama"
+      },
+      {
+        "english": "yellow",
+        "devanagari": "ज्वंमा",
+        "transliteration": "Jwama"
+      },
+      {
+        "english": "black",
+        "devanagari": "न्यामा",
+        "transliteration": "Nyama"
+      },
+      {
+        "english": "white",
+        "devanagari": "स्वेतमा",
+        "transliteration": "Swetama"
+      },
+      {
+        "english": "orange",
+        "devanagari": "सुन्तलामा",
+        "transliteration": "Suntalama"
+      },
+      {
+        "english": "purple",
+        "devanagari": "बैजनीमा",
+        "transliteration": "Baijanimaa"
+      },
+      {
+        "english": "brown",
+        "devanagari": "खैरोमा",
+        "transliteration": "Khairma"
+      },
+      {
+        "english": "pink",
+        "devanagari": "गुलाबीमा",
+        "transliteration": "Gulabima"
+      }
+    ],
+    "food": [
+      {
+        "english": "rice",
+        "devanagari": "बियां",
+        "transliteration": "Biyan"
+      },
+      {
+        "english": "water",
+        "devanagari": "लः",
+        "transliteration": "La"
+      },
+      {
+        "english": "milk",
+        "devanagari": "झि",
+        "transliteration": "Jhi"
+      },
+      {
+        "english": "bread",
+        "devanagari": "बंलः",
+        "transliteration": "Bala"
+      },
+      {
+        "english": "meat",
+        "devanagari": "सा",
+        "transliteration": "Sa"
+      },
+      {
+        "english": "fish",
+        "devanagari": "ङा",
+        "transliteration": "Nga"
+      },
+      {
+        "english": "egg",
+        "devanagari": "किप",
+        "transliteration": "Kipa"
+      },
+      {
+        "english": "vegetable",
+        "devanagari": "साग",
+        "transliteration": "Saag"
+      },
+      {
+        "english": "fruit",
+        "devanagari": "फल",
+        "transliteration": "Phala"
+      },
+      {
+        "english": "salt",
+        "devanagari": "क्वःसा",
+        "transliteration": "Kwahsa"
+      },
+      {
+        "english": "sugar",
+        "devanagari": "चिनि",
+        "transliteration": "Chini"
+      },
+      {
+        "english": "oil",
+        "devanagari": "तेल",
+        "transliteration": "Tela"
+      },
+      {
+        "english": "tea",
+        "devanagari": "चिया",
+        "transliteration": "Chiya"
+      },
+      {
+        "english": "food",
+        "devanagari": "खाजा",
+        "transliteration": "Khaja"
+      },
+      {
+        "english": "sweet",
+        "devanagari": "गुलियो",
+        "transliteration": "Guliyo"
+      },
+      {
+        "english": "spicy",
+        "devanagari": "तिखो",
+        "transliteration": "Tikho"
+      },
+      {
+        "english": "butter",
+        "devanagari": "ग्वः",
+        "transliteration": "Gwah"
+      },
+      {
+        "english": "yogurt",
+        "devanagari": "झी",
+        "transliteration": "Jhi"
+      }
+    ],
+    "nature": [
+      {
+        "english": "sun",
+        "devanagari": "सु",
+        "transliteration": "Su"
+      },
+      {
+        "english": "moon",
+        "devanagari": "न्ह्याय्पुँ",
+        "transliteration": "Nhyaypu"
+      },
+      {
+        "english": "star",
+        "devanagari": "सःपुँ",
+        "transliteration": "Sahpu"
+      },
+      {
+        "english": "sky",
+        "devanagari": "आस्मान",
+        "transliteration": "Aasmaan"
+      },
+      {
+        "english": "rain",
+        "devanagari": "झ्वः",
+        "transliteration": "Jhwah"
+      },
+      {
+        "english": "wind",
+        "devanagari": "वायु",
+        "transliteration": "Vayu"
+      },
+      {
+        "english": "fire",
+        "devanagari": "में",
+        "transliteration": "Me"
+      },
+      {
+        "english": "water",
+        "devanagari": "लः",
+        "transliteration": "La"
+      },
+      {
+        "english": "earth",
+        "devanagari": "म्ह्यय्",
+        "transliteration": "Mhyay"
+      },
+      {
+        "english": "mountain",
+        "devanagari": "हिमाल",
+        "transliteration": "Himal"
+      },
+      {
+        "english": "river",
+        "devanagari": "खुसि",
+        "transliteration": "Khusi"
+      },
+      {
+        "english": "tree",
+        "devanagari": "सिं",
+        "transliteration": "Si"
+      },
+      {
+        "english": "flower",
+        "devanagari": "स्वयाः",
+        "transliteration": "Swayah"
+      },
+      {
+        "english": "leaf",
+        "devanagari": "लाकु",
+        "transliteration": "Laku"
+      },
+      {
+        "english": "stone",
+        "devanagari": "लाखा",
+        "transliteration": "Lakha"
+      },
+      {
+        "english": "cloud",
+        "devanagari": "थिभाय्",
+        "transliteration": "Thibhay"
+      },
+      {
+        "english": "snow",
+        "devanagari": "हिउँ",
+        "transliteration": "Hiu"
+      },
+      {
+        "english": "lake",
+        "devanagari": "ग्वःपुखु",
+        "transliteration": "Gwahpukhu"
+      },
+      {
+        "english": "forest",
+        "devanagari": "जंगल",
+        "transliteration": "Jangal"
+      },
+      {
+        "english": "bird",
+        "devanagari": "च्वय्",
+        "transliteration": "Chwaya"
+      },
+      {
+        "english": "animal",
+        "devanagari": "स्वाँ",
+        "transliteration": "Swaa"
+      },
+      {
+        "english": "fish",
+        "devanagari": "ङा",
+        "transliteration": "Nga"
+      }
+    ],
+    "time": [
+      {
+        "english": "today",
+        "devanagari": "थ्व न्हि",
+        "transliteration": "Thwa nhi"
+      },
+      {
+        "english": "yesterday",
+        "devanagari": "न्हापाया न्हि",
+        "transliteration": "Nhapaya nhi"
+      },
+      {
+        "english": "tomorrow",
+        "devanagari": "ताःया न्हि",
+        "transliteration": "Tahya nhi"
+      },
+      {
+        "english": "morning",
+        "devanagari": "भिंचा",
+        "transliteration": "Bhincha"
+      },
+      {
+        "english": "afternoon",
+        "devanagari": "न्हिथाय्",
+        "transliteration": "Nhithay"
+      },
+      {
+        "english": "evening",
+        "devanagari": "थःन्हु",
+        "transliteration": "Thanhu"
+      },
+      {
+        "english": "night",
+        "devanagari": "स्वान्हु",
+        "transliteration": "Swanhu"
+      },
+      {
+        "english": "year",
+        "devanagari": "दँ",
+        "transliteration": "Da"
+      },
+      {
+        "english": "month",
+        "devanagari": "ला",
+        "transliteration": "La"
+      },
+      {
+        "english": "week",
+        "devanagari": "हप्ता",
+        "transliteration": "Hapta"
+      },
+      {
+        "english": "day",
+        "devanagari": "न्हि",
+        "transliteration": "Nhi"
+      },
+      {
+        "english": "hour",
+        "devanagari": "घन्टा",
+        "transliteration": "Ghanta"
+      },
+      {
+        "english": "minute",
+        "devanagari": "मिनेट",
+        "transliteration": "Mineta"
+      },
+      {
+        "english": "now",
+        "devanagari": "थाय्",
+        "transliteration": "Thay"
+      },
+      {
+        "english": "always",
+        "devanagari": "सतय्",
+        "transliteration": "Satay"
+      },
+      {
+        "english": "never",
+        "devanagari": "मकये",
+        "transliteration": "Makaye"
+      }
+    ],
+    "verb": [
+      {
+        "english": "eat",
+        "devanagari": "चायेगु",
+        "transliteration": "Chayegu"
+      },
+      {
+        "english": "drink",
+        "devanagari": "ज्यायेगु",
+        "transliteration": "Jyayegu"
+      },
+      {
+        "english": "sleep",
+        "devanagari": "न्यायेगु",
+        "transliteration": "Nyayegu"
+      },
+      {
+        "english": "walk",
+        "devanagari": "नेयेगु",
+        "transliteration": "Neyegu"
+      },
+      {
+        "english": "run",
+        "devanagari": "दाहाँ धायेगु",
+        "transliteration": "Daha dhayegu"
+      },
+      {
+        "english": "speak",
+        "devanagari": "धायेगु",
+        "transliteration": "Dhayegu"
+      },
+      {
+        "english": "listen",
+        "devanagari": "न्ह्यायेगु",
+        "transliteration": "Nhyayegu"
+      },
+      {
+        "english": "see",
+        "devanagari": "स्वयेगु",
+        "transliteration": "Swayegu"
+      },
+      {
+        "english": "come",
+        "devanagari": "वयेगु",
+        "transliteration": "Wayegu"
+      },
+      {
+        "english": "go",
+        "devanagari": "वनेगु",
+        "transliteration": "Wanegu"
+      },
+      {
+        "english": "give",
+        "devanagari": "दयेगु",
+        "transliteration": "Dayegu"
+      },
+      {
+        "english": "take",
+        "devanagari": "नायेगु",
+        "transliteration": "Nayegu"
+      },
+      {
+        "english": "buy",
+        "devanagari": "ज्वनेगु",
+        "transliteration": "Jwanegu"
+      },
+      {
+        "english": "sell",
+        "devanagari": "क्वकायेगु",
+        "transliteration": "Kwakayegu"
+      },
+      {
+        "english": "read",
+        "devanagari": "ल्हायेगु",
+        "transliteration": "Lhayegu"
+      },
+      {
+        "english": "write",
+        "devanagari": "ल्यायेगु",
+        "transliteration": "Lyayegu"
+      },
+      {
+        "english": "work",
+        "devanagari": "मेगु",
+        "transliteration": "Megu"
+      },
+      {
+        "english": "play",
+        "devanagari": "त्यायेगु",
+        "transliteration": "Tyayegu"
+      },
+      {
+        "english": "laugh",
+        "devanagari": "त्वःयायेगु",
+        "transliteration": "Twahyayegu"
+      },
+      {
+        "english": "cry",
+        "devanagari": "क्वाहाँ यायेगु",
+        "transliteration": "Kwaha yayegu"
+      },
+      {
+        "english": "love",
+        "devanagari": "हाःयायेगु",
+        "transliteration": "Hahyayegu"
+      },
+      {
+        "english": "know",
+        "devanagari": "थुयेगु",
+        "transliteration": "Thuyegu"
+      },
+      {
+        "english": "think",
+        "devanagari": "ल्यायेगु",
+        "transliteration": "Lyayegu"
+      },
+      {
+        "english": "open",
+        "devanagari": "खनेगु",
+        "transliteration": "Khanegu"
+      },
+      {
+        "english": "close",
+        "devanagari": "छायेगु",
+        "transliteration": "Chhayegu"
+      },
+      {
+        "english": "sit",
+        "devanagari": "थायेगु",
+        "transliteration": "Thayegu"
+      },
+      {
+        "english": "stand",
+        "devanagari": "थाकेगु",
+        "transliteration": "Thakegu"
+      },
+      {
+        "english": "wait",
+        "devanagari": "थायेगु",
+        "transliteration": "Thayegu"
+      },
+      {
+        "english": "help",
+        "devanagari": "मदतयेगु",
+        "transliteration": "Madatayegu"
+      },
+      {
+        "english": "learn",
+        "devanagari": "ल्हायेगु",
+        "transliteration": "Lhayegu"
+      },
+      {
+        "english": "teach",
+        "devanagari": "ल्हायकेगु",
+        "transliteration": "Lhayakegu"
+      },
+      {
+        "english": "cook",
+        "devanagari": "ब्वयेगु",
+        "transliteration": "Bwayegu"
+      },
+      {
+        "english": "wash",
+        "devanagari": "क्षालयेगु",
+        "transliteration": "Kshalayegu"
+      },
+      {
+        "english": "clean",
+        "devanagari": "सुथेयायेगु",
+        "transliteration": "Sutheyayegu"
+      },
+      {
+        "english": "build",
+        "devanagari": "दयेकेगु",
+        "transliteration": "Dayakegu"
+      },
+      {
+        "english": "break",
+        "devanagari": "तुलेगु",
+        "transliteration": "Tulegu"
+      },
+      {
+        "english": "find",
+        "devanagari": "थुइकेगु",
+        "transliteration": "Thuikegu"
+      },
+      {
+        "english": "lose",
+        "devanagari": "त्वःतेगु",
+        "transliteration": "Twategu"
+      },
+      {
+        "english": "win",
+        "devanagari": "थियेगु",
+        "transliteration": "Thiyegu"
+      },
+      {
+        "english": "remember",
+        "devanagari": "दयेकेगु",
+        "transliteration": "Dayakegu"
+      },
+      {
+        "english": "forget",
+        "devanagari": "मत्वासा",
+        "transliteration": "Matwasa"
+      },
+      {
+        "english": "want",
+        "devanagari": "लायेगु",
+        "transliteration": "Layegu"
+      },
+      {
+        "english": "need",
+        "devanagari": "छुं लायेगु",
+        "transliteration": "Chhu layegu"
+      }
+    ],
+    "adjective": [
+      {
+        "english": "big",
+        "devanagari": "थकाली",
+        "transliteration": "Thakali"
+      },
+      {
+        "english": "small",
+        "devanagari": "छिकाली",
+        "transliteration": "Chhikali"
+      },
+      {
+        "english": "hot",
+        "devanagari": "न्ह्यागु",
+        "transliteration": "Nhyagu"
+      },
+      {
+        "english": "cold",
+        "devanagari": "स्यांगु",
+        "transliteration": "Syangu"
+      },
+      {
+        "english": "good",
+        "devanagari": "भिंगु",
+        "transliteration": "Bhingu"
+      },
+      {
+        "english": "bad",
+        "devanagari": "मभिंगु",
+        "transliteration": "Mabhingu"
+      },
+      {
+        "english": "new",
+        "devanagari": "च्वसागु",
+        "transliteration": "Chwasagu"
+      },
+      {
+        "english": "old",
+        "devanagari": "थाँगु",
+        "transliteration": "Thangu"
+      },
+      {
+        "english": "fast",
+        "devanagari": "ख्यलय्",
+        "transliteration": "Khyalay"
+      },
+      {
+        "english": "slow",
+        "devanagari": "न्हापाय्",
+        "transliteration": "Nhapay"
+      },
+      {
+        "english": "beautiful",
+        "devanagari": "सुंदर",
+        "transliteration": "Sundara"
+      },
+      {
+        "english": "ugly",
+        "devanagari": "असुंदर",
+        "transliteration": "Asundara"
+      },
+      {
+        "english": "strong",
+        "devanagari": "बलिष्ठ",
+        "transliteration": "Balistha"
+      },
+      {
+        "english": "weak",
+        "devanagari": "निर्बल",
+        "transliteration": "Nirbala"
+      },
+      {
+        "english": "happy",
+        "devanagari": "सुखीमनु",
+        "transliteration": "Sukhimanu"
+      },
+      {
+        "english": "sad",
+        "devanagari": "दुखीमनु",
+        "transliteration": "Dukhimanu"
+      },
+      {
+        "english": "hungry",
+        "devanagari": "क्षुधाय्",
+        "transliteration": "Kshudhay"
+      },
+      {
+        "english": "thirsty",
+        "devanagari": "त्वाखनाय्",
+        "transliteration": "Twakhanay"
+      },
+      {
+        "english": "tired",
+        "devanagari": "सल्हाःगु",
+        "transliteration": "Salhagu"
+      },
+      {
+        "english": "sick",
+        "devanagari": "न्ह्येबोगु",
+        "transliteration": "Nhyebogu"
+      },
+      {
+        "english": "healthy",
+        "devanagari": "सुथेगु",
+        "transliteration": "Suthegu"
+      },
+      {
+        "english": "rich",
+        "devanagari": "धनी",
+        "transliteration": "Dhani"
+      },
+      {
+        "english": "poor",
+        "devanagari": "निर्धन",
+        "transliteration": "Nirdhana"
+      },
+      {
+        "english": "tall",
+        "devanagari": "थकाः",
+        "transliteration": "Thakah"
+      },
+      {
+        "english": "short",
+        "devanagari": "छिकाः",
+        "transliteration": "Chhikah"
+      },
+      {
+        "english": "heavy",
+        "devanagari": "लखाःगु",
+        "transliteration": "Lakhagu"
+      },
+      {
+        "english": "light",
+        "devanagari": "लिक्कगु",
+        "transliteration": "Likkagu"
+      },
+      {
+        "english": "clean",
+        "devanagari": "सुथेगु",
+        "transliteration": "Suthegu"
+      },
+      {
+        "english": "dirty",
+        "devanagari": "मलिन",
+        "transliteration": "Malina"
+      },
+      {
+        "english": "loud",
+        "devanagari": "छताःगु",
+        "transliteration": "Chhatagu"
+      },
+      {
+        "english": "quiet",
+        "devanagari": "न्हाःगु",
+        "transliteration": "Nhagu"
+      },
+      {
+        "english": "easy",
+        "devanagari": "सजिलो",
+        "transliteration": "Sajilo"
+      },
+      {
+        "english": "difficult",
+        "devanagari": "कठिन",
+        "transliteration": "Kathina"
+      },
+      {
+        "english": "true",
+        "devanagari": "स्वया",
+        "transliteration": "Swaya"
+      },
+      {
+        "english": "false",
+        "devanagari": "देखाथें",
+        "transliteration": "Dekhathey"
+      }
+    ],
+    "place": [
+      {
+        "english": "home",
+        "devanagari": "च्वं",
+        "transliteration": "Chwa"
+      },
+      {
+        "english": "school",
+        "devanagari": "विद्यालय",
+        "transliteration": "Vidyalaya"
+      },
+      {
+        "english": "hospital",
+        "devanagari": "चिकित्सालय",
+        "transliteration": "Chikitsalaya"
+      },
+      {
+        "english": "market",
+        "devanagari": "बजार",
+        "transliteration": "Bazar"
+      },
+      {
+        "english": "temple",
+        "devanagari": "देगः",
+        "transliteration": "Degah"
+      },
+      {
+        "english": "road",
+        "devanagari": "लँ",
+        "transliteration": "La"
+      },
+      {
+        "english": "city",
+        "devanagari": "नगर",
+        "transliteration": "Nagara"
+      },
+      {
+        "english": "village",
+        "devanagari": "गाउँ",
+        "transliteration": "Gaun"
+      },
+      {
+        "english": "country",
+        "devanagari": "देश",
+        "transliteration": "Desha"
+      },
+      {
+        "english": "Nepal",
+        "devanagari": "नेपाः",
+        "transliteration": "Nepah"
+      },
+      {
+        "english": "Kathmandu",
+        "devanagari": "येँ",
+        "transliteration": "Yen"
+      },
+      {
+        "english": "Lalitpur",
+        "devanagari": "ललितपुर",
+        "transliteration": "Lalitapura"
+      },
+      {
+        "english": "Bhaktapur",
+        "devanagari": "खोपिं",
+        "transliteration": "Khoping"
+      },
+      {
+        "english": "shop",
+        "devanagari": "पसः",
+        "transliteration": "Pasah"
+      },
+      {
+        "english": "restaurant",
+        "devanagari": "भोजनालय",
+        "transliteration": "Bhojanaalya"
+      },
+      {
+        "english": "bank",
+        "devanagari": "बैंक",
+        "transliteration": "Bainka"
+      },
+      {
+        "english": "office",
+        "devanagari": "कचहरी",
+        "transliteration": "Kachahari"
+      },
+      {
+        "english": "garden",
+        "devanagari": "बगैंचा",
+        "transliteration": "Bagaincha"
+      },
+      {
+        "english": "park",
+        "devanagari": "उद्यान",
+        "transliteration": "Udyana"
+      }
+    ],
+    "pronoun": [
+      {
+        "english": "I",
+        "devanagari": "जि",
+        "transliteration": "Ji"
+      },
+      {
+        "english": "you",
+        "devanagari": "छि",
+        "transliteration": "Chhi"
+      },
+      {
+        "english": "he",
+        "devanagari": "व",
+        "transliteration": "Wa"
+      },
+      {
+        "english": "she",
+        "devanagari": "व",
+        "transliteration": "Wa"
+      },
+      {
+        "english": "we",
+        "devanagari": "जिपिं",
+        "transliteration": "Jiping"
+      },
+      {
+        "english": "they",
+        "devanagari": "वपिं",
+        "transliteration": "Waping"
+      },
+      {
+        "english": "this",
+        "devanagari": "थ्व",
+        "transliteration": "Thwa"
+      },
+      {
+        "english": "that",
+        "devanagari": "थथे",
+        "transliteration": "Thathe"
+      },
+      {
+        "english": "what",
+        "devanagari": "छु",
+        "transliteration": "Chhu"
+      },
+      {
+        "english": "who",
+        "devanagari": "सुं",
+        "transliteration": "Su"
+      },
+      {
+        "english": "where",
+        "devanagari": "खः",
+        "transliteration": "Khah"
+      },
+      {
+        "english": "when",
+        "devanagari": "बले",
+        "transliteration": "Bale"
+      },
+      {
+        "english": "why",
+        "devanagari": "छुकथं",
+        "transliteration": "Chhukathan"
+      },
+      {
+        "english": "how",
+        "devanagari": "छुगु",
+        "transliteration": "Chhugu"
+      }
+    ],
+    "clothing": [
+      {
+        "english": "shirt",
+        "devanagari": "कमिज",
+        "transliteration": "Kamija"
+      },
+      {
+        "english": "pants",
+        "devanagari": "सुरुवाल",
+        "transliteration": "Suruval"
+      },
+      {
+        "english": "dress",
+        "devanagari": "लुगा",
+        "transliteration": "Luga"
+      },
+      {
+        "english": "shoes",
+        "devanagari": "खोय्",
+        "transliteration": "Khoy"
+      },
+      {
+        "english": "hat",
+        "devanagari": "टोपी",
+        "transliteration": "Topi"
+      },
+      {
+        "english": "jacket",
+        "devanagari": "ज्याकेट",
+        "transliteration": "Jaketa"
+      },
+      {
+        "english": "sari",
+        "devanagari": "सारी",
+        "transliteration": "Sari"
+      },
+      {
+        "english": "traditional dress",
+        "devanagari": "हाकु पतासी",
+        "transliteration": "Haku patasi"
+      }
+    ],
+    "object": [
+      {
+        "english": "book",
+        "devanagari": "सफु",
+        "transliteration": "Saphu"
+      },
+      {
+        "english": "pen",
+        "devanagari": "कलम",
+        "transliteration": "Kalama"
+      },
+      {
+        "english": "phone",
+        "devanagari": "फोन",
+        "transliteration": "Phona"
+      },
+      {
+        "english": "money",
+        "devanagari": "तःमाः",
+        "transliteration": "Tahmah"
+      },
+      {
+        "english": "key",
+        "devanagari": "साँचो",
+        "transliteration": "Sancho"
+      },
+      {
+        "english": "door",
+        "devanagari": "ग्व",
+        "transliteration": "Gwa"
+      },
+      {
+        "english": "window",
+        "devanagari": "झ्याल",
+        "transliteration": "Jhyal"
+      },
+      {
+        "english": "table",
+        "devanagari": "मेज",
+        "transliteration": "Meja"
+      },
+      {
+        "english": "chair",
+        "devanagari": "काठ",
+        "transliteration": "Kath"
+      },
+      {
+        "english": "bed",
+        "devanagari": "नेग",
+        "transliteration": "Nega"
+      },
+      {
+        "english": "bag",
+        "devanagari": "थाःसा",
+        "transliteration": "Thahsa"
+      },
+      {
+        "english": "car",
+        "devanagari": "गाडी",
+        "transliteration": "Gadi"
+      },
+      {
+        "english": "bicycle",
+        "devanagari": "साइकल",
+        "transliteration": "Saikala"
+      },
+      {
+        "english": "computer",
+        "devanagari": "कम्प्युटर",
+        "transliteration": "Kampyutar"
+      },
+      {
+        "english": "clock",
+        "devanagari": "घडी",
+        "transliteration": "Ghadi"
+      },
+      {
+        "english": "mirror",
+        "devanagari": "ऐना",
+        "transliteration": "Aina"
+      },
+      {
+        "english": "lamp",
+        "devanagari": "बत्ती",
+        "transliteration": "Batti"
+      },
+      {
+        "english": "knife",
+        "devanagari": "छु",
+        "transliteration": "Chhu"
+      },
+      {
+        "english": "spoon",
+        "devanagari": "चम्चा",
+        "transliteration": "Chamcha"
+      },
+      {
+        "english": "plate",
+        "devanagari": "थाः",
+        "transliteration": "Thah"
+      },
+      {
+        "english": "cup",
+        "devanagari": "गिलास",
+        "transliteration": "Gilas"
+      }
+    ]
+  }
+}

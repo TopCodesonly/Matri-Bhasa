@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Matri Bhasa — मातृ भाषा</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:relative;">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo dev">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links" style="position:absolute;left:50%;transform:translateX(-50%);">
+    <a href="languages.html">Languages</a>
+    <a href="badges.html">Badges</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="chip streak" id="chipStreak" title="Day streak"><span class="chip-icon">🔥</span><span id="streakVal">0</span></div>
+    <div class="chip xp" id="chipXp" title="Total XP"><span class="chip-icon">⚡</span><span id="xpVal">0</span></div>
+    <div class="chip level" id="chipLevel" title="Level"><span class="chip-icon">🏅</span><span id="levelVal">Seedling</span></div>
+  </div>
+</nav>
+
+<!-- WORD OF THE DAY -->
+<div class="wotd" id="wotd">
+  <span class="wotd-label">Word of the day</span>
+  <span class="wotd-word dev" id="wotdWord">—</span>
+  <span class="wotd-roman" id="wotdRoman">—</span>
+  <span class="wotd-sep">·</span>
+  <span class="wotd-en" id="wotdEn">—</span>
+  <button class="wotd-hear" id="wotdHear">▶ Hear it</button>
+</div>
+
+<!-- HERO -->
+<div class="hero-screen">
+  <div class="screen-inner">
+    <div class="hero-script dev" id="heroWord">नमस्ते</div>
+    <div class="hero-trans" id="heroTrans">Hello · Greetings</div>
+    <div class="hero-lang" id="heroLang">Nepali</div>
+    <div class="hero-dots" id="heroDots"></div>
+    <h1 class="hero-headline">Your heritage. Your language.</h1>
+    <p class="hero-body">Bite-sized Nepali lessons with grammar rules explained clearly, four exercise types, streaks, and a path that actually works — built for young Nepalis wherever they are in the world.</p>
+    <div class="hero-actions">
+      <button class="btn btn-saffron" onclick="location.href='languages.html'">Start learning</button>
+      <button class="btn btn-outline" onclick="location.href='badges.html'">See badges</button>
+    </div>
+  </div>
+  <a href="#story" class="scroll-cue">Our story<span class="arrow">↓</span></a>
+</div>
+
+<!-- MOTTO -->
+<div class="motto-band">
+  <div class="motto-eyebrow">Our motto</div>
+  <p class="motto">Learn the language. Feel the connection. <span class="accent">Come home</span> to a culture that has always been yours.</p>
+  <!-- Himalayan graphic -->
+  <svg class="mountains" viewBox="0 0 1200 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="1010" cy="74" r="34" fill="#E8930A" opacity="0.85"/>
+    <polygon points="-20,220 200,80 420,220" fill="#2E8B64"/>
+    <polygon points="320,220 560,40 820,220" fill="#1A5E45"/>
+    <polygon points="520,86 560,40 600,84 580,96 560,82 540,98" fill="#F7F2E8" opacity="0.85"/>
+    <polygon points="700,220 940,70 1180,220" fill="#2E8B64"/>
+    <polygon points="900,108 940,70 980,106 962,118 940,102 918,120" fill="#F7F2E8" opacity="0.8"/>
+    <polygon points="980,220 1140,110 1240,220" fill="#1A5E45"/>
+  </svg>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">Three steps to fluency</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon">📖</div>
+        <div class="how-title">Learn the rule</div>
+        <div class="how-desc">Every lesson opens with the grammar pattern explained clearly — not buried in repetition. You understand the why before you practise.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon">🧩</div>
+        <div class="how-title">Test four ways</div>
+        <div class="how-desc">Multiple choice, word arrangement, fill-in-the-blank, and translation. The same concept hits from different angles until it sticks.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon">🔥</div>
+        <div class="how-title">Build your streak</div>
+        <div class="how-desc">XP, streaks, and badges keep you coming back. Miss a day and the streak resets — show up daily and watch your level climb.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LESSON PREVIEW -->
+<section class="preview-section" id="preview">
+  <div class="container">
+    <p class="section-eyebrow">Try it now</p>
+    <h2 class="section-title">Your first lesson, free</h2>
+    <div class="preview-card">
+      <div class="preview-badge">Lesson 1 · Greetings</div>
+      <div class="preview-question">What does <span class="preview-highlight">नमस्ते</span> mean?</div>
+      <div class="preview-choices" id="previewChoices">
+        <button class="preview-choice" data-correct="true">Hello / Greetings</button>
+        <button class="preview-choice">Thank you</button>
+        <button class="preview-choice">Goodbye</button>
+        <button class="preview-choice">How are you?</button>
+      </div>
+      <div class="preview-feedback" id="previewFeedback"></div>
+      <button class="btn btn-saffron" style="margin-top:1.5rem;" onclick="location.href='languages.html'">Continue to full lessons →</button>
+    </div>
+  </div>
+</section>
+
+<!-- STORY / MISSION -->
+<section class="story-sec" id="story">
+  <div class="container">
+    <p class="section-eyebrow">Our story</p>
+    <h2 class="section-title">A language is a homecoming</h2>
+    <div class="story-narrative">
+      <p><span class="lead">Every word in Nepali carries centuries of story</span> — of mountains, of community, of a people who built a civilization at the top of the world. We're bringing that heritage to you, one phrase at a time.</p>
+      <p>Our goal is simple: to help people connect with Nepali heritage and identity through immersive, accessible education — and to make language learning genuinely fun.</p>
+      <p><span class="lead">Learn the language. Feel the connection.</span> Come home to a culture that has always been yours.</p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card"><div class="value-icon">🏔️</div><div class="value-title">Heritage</div><div class="value-desc">Centuries of mountain stories, carried in every phrase you learn.</div></div>
+      <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">Community</div><div class="value-desc">Built with teachers, elders, and students who keep the language alive.</div></div>
+      <div class="value-card"><div class="value-icon">📚</div><div class="value-title">Accessible</div><div class="value-desc">Free, immersive education that meets you wherever you are.</div></div>
+      <div class="value-card"><div class="value-icon">🎮</div><div class="value-title">Genuinely fun</div><div class="value-desc">Streaks, XP, and a path that makes showing up every day feel good.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS (formerly the Mission page) -->
+<div class="sdg-section" id="goals">
+  <div class="container">
+    <p style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,242,232,0.4);margin-bottom:0.75rem;">Supporting the UN Sustainable Development Goals</p>
+    <h2 style="font-family:'Yatra One',serif;font-size:clamp(22px,3.5vw,34px);color:var(--parchment);">More than an app — a community project</h2>
+    <div class="sdg-grid">
+      <div class="sdg-card"><div class="sdg-num">4</div><div class="sdg-title">Quality Education</div><div class="sdg-desc">Free, accessible lessons for students everywhere, regardless of background.</div></div>
+      <div class="sdg-card"><div class="sdg-num">10</div><div class="sdg-title">Reduced Inequalities</div><div class="sdg-desc">Preserving indigenous languages keeps minority communities seen and heard.</div></div>
+      <div class="sdg-card"><div class="sdg-num">11</div><div class="sdg-title">Sustainable Communities</div><div class="sdg-desc">Language is the foundation of cultural identity and resilient communities.</div></div>
+      <div class="sdg-card"><div class="sdg-num">17</div><div class="sdg-title">Partnerships</div><div class="sdg-desc">Built with teachers, elders, students, and local organisations.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Matri Bhasa · मातृ भाषा</div>
+  <div class="footer-tagline">Learn the language. Feel the connection. Come home.</div>
+  <div class="footer-links">
+    <a href="languages.html">Languages</a><a href="badges.html">Badges</a><a href="about.html">About</a><a href="#story">Our Story</a>
+  </div>
+  <div>Made with ❤️ by young Nepalis, for young Nepalis. Free forever.</div>
+</footer>
+
+<!-- XP TOAST -->
+<div class="xp-toast" id="xpToast"><span>⚡</span><span id="xpToastText">+10 XP</span></div>
+
+<script src="data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script>
+  const state = loadState();
+  renderHud(state);
+  consumeXpParam();
+
+  /* word of the day */
+  const wotd = WOTD_POOL[Math.floor(Date.now() / 86400000) % WOTD_POOL.length];
+  document.getElementById('wotdWord').textContent = wotd.dev;
+  document.getElementById('wotdRoman').textContent = wotd.roman;
+  document.getElementById('wotdEn').textContent = wotd.en;
+  document.getElementById('wotdHear').onclick = function () { speakText(wotd.dev, this); };
+
+  /* hero cycler */
+  const heroWords = [
+    { word: 'नमस्ते', trans: 'Hello · Greetings' },
+    { word: 'धन्यवाद', trans: 'Thank you' },
+    { word: 'हिमाल', trans: 'Mountain' },
+    { word: 'माया', trans: 'Love' },
+    { word: 'खुसी', trans: 'Happiness' },
+  ];
+  let heroIdx = 0, heroTimer;
+  const dotsWrap = document.getElementById('heroDots');
+  heroWords.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => setHero(i);
+    dotsWrap.appendChild(d);
+  });
+  function setHero(i) {
+    heroIdx = i;
+    const w = heroWords[i];
+    const wEl = document.getElementById('heroWord'), tEl = document.getElementById('heroTrans');
+    wEl.style.opacity = '0'; tEl.style.opacity = '0';
+    setTimeout(() => {
+      wEl.textContent = w.word; tEl.textContent = w.trans;
+      wEl.style.opacity = '1'; tEl.style.opacity = '1';
+    }, 380);
+    [...dotsWrap.children].forEach((d, di) => d.classList.toggle('active', di === i));
+    clearInterval(heroTimer);
+    heroTimer = setInterval(() => setHero((heroIdx + 1) % heroWords.length), 3200);
+  }
+  heroTimer = setInterval(() => setHero((heroIdx + 1) % heroWords.length), 3200);
+</script>
+
+<script>
+  /* preview lesson interaction */
+  document.querySelectorAll('.preview-choice').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (document.querySelector('.preview-choice.chosen')) return;
+      document.querySelectorAll('.preview-choice').forEach(function(b) { b.classList.add('chosen'); });
+      var correct = btn.dataset.correct === 'true';
+      btn.classList.add(correct ? 'correct' : 'wrong');
+      if (!correct) document.querySelector('[data-correct="true"]').classList.add('correct');
+      document.getElementById('previewFeedback').textContent = correct
+        ? '✓ Correct! नमस्ते is the most common Nepali greeting.'
+        : '✗ Not quite — नमस्ते means Hello / Greetings.';
+      document.getElementById('previewFeedback').className = 'preview-feedback ' + (correct ? 'correct' : 'wrong');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Choose a language — Matri Bhasa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo dev">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="languages.html" class="active">Languages</a>
+    <a href="badges.html">Badges</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="chip streak" id="chipStreak" title="Day streak"><span class="chip-icon">🔥</span><span id="streakVal">0</span></div>
+    <div class="chip xp" id="chipXp" title="Total XP"><span class="chip-icon">⚡</span><span id="xpVal">0</span></div>
+    <div class="chip level" id="chipLevel" title="Level"><span class="chip-icon">🏅</span><span id="levelVal">Seedling</span></div>
+  </div>
+</nav>
+
+<div class="screen">
+  <div class="screen-inner">
+    <div class="screen-head">
+      <p class="section-eyebrow">Choose your path</p>
+      <h1 class="section-title">Which language today?</h1>
+      <p class="section-body" style="margin:0 auto">Pick a course to start learning. Your XP, streak, and badges are shared across both.</p>
+    </div>
+
+    <div class="lang-select-grid">
+      <div class="lang-select-card" onclick="location.href='lessons.html'">
+        <div class="lang-select-script">नेपाली</div>
+        <div class="lang-select-name">Nepali</div>
+        <div class="lang-select-native">Nepali · Devanagari</div>
+        <div class="lang-select-desc">The official language of Nepal — greetings, family, numbers, food, and more across 12 lessons.</div>
+        <div class="lang-select-pill">Start learning →</div>
+      </div>
+
+      <div class="lang-select-card" onclick="location.href='newari.html'">
+        <div class="lang-select-script">नेवाः</div>
+        <div class="lang-select-name">Newari</div>
+        <div class="lang-select-native">Nepal Bhasa · नेपाल भाषा</div>
+        <div class="lang-select-desc">The classical language of the Kathmandu Valley — weather, valley cities, colours, and everyday Newar sayings.</div>
+        <div class="lang-select-pill">Start learning →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast"><span>⚡</span><span id="xpToastText">+10 XP</span></div>
+
+<script src="data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script>
+  const state = loadState();
+  renderHud(state);
+  consumeXpParam();
+</script>
+</body>
+</html>

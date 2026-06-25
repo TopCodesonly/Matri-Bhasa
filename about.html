@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — Matri Bhasa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo dev">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="languages.html">Languages</a>
+    <a href="badges.html">Badges</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="chip streak" id="chipStreak" title="Day streak"><span class="chip-icon">🔥</span><span id="streakVal">0</span></div>
+    <div class="chip xp" id="chipXp" title="Total XP"><span class="chip-icon">⚡</span><span id="xpVal">0</span></div>
+    <div class="chip level" id="chipLevel" title="Level"><span class="chip-icon">🏅</span><span id="levelVal">Seedling</span></div>
+  </div>
+</nav>
+
+<div class="screen">
+  <div class="screen-inner">
+    <div class="screen-head">
+      <p class="section-eyebrow">How it works</p>
+      <h1 class="section-title">Built to keep you going</h1>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item"><div class="feature-icon">🔥</div><div class="feature-title">Daily streaks</div><div class="feature-desc">Practice every day to grow your streak. Miss a day and it resets — so keep showing up.</div></div>
+      <div class="feature-item"><div class="feature-icon">⚡</div><div class="feature-title">Earn XP</div><div class="feature-desc">+10 for recall, +15 for building sentences. XP unlocks new tiers and levels.</div></div>
+      <div class="feature-item"><div class="feature-icon">❤️</div><div class="feature-title">Hearts & stakes</div><div class="feature-desc">Three hearts per lesson. Wrong answers cost one — run out and the lesson resets.</div></div>
+      <div class="feature-item"><div class="feature-icon">🧩</div><div class="feature-title">Real practice</div><div class="feature-desc">Build, choose, and translate. Missed words come back until you master them.</div></div>
+      <div class="feature-item"><div class="feature-icon">🏅</div><div class="feature-title">Levels & badges</div><div class="feature-desc">Climb from Seedling to Master and collect badges for every milestone.</div></div>
+      <div class="feature-item"><div class="feature-icon">🔊</div><div class="feature-title">Hear it spoken</div><div class="feature-desc">Tap to hear any Nepali word read aloud, so you learn pronunciation as you go.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast"><span>⚡</span><span id="xpToastText">+10 XP</span></div>
+
+<script src="data.js"></script>
+<script src="state.js"></script>
+<script src="auth.js"></script>
+<script src="app.js"></script>
+<script>
+  const state = loadState();
+  renderHud(state);
+  consumeXpParam();
+</script>
+</body>
+</html>

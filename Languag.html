@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Matri Bhasa — मातृ भाषा</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #0D3D2E;
+    --green-mid: #1A5E45;
+    --green-light: #2E8B64;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE7D5;
+    --card-bg: #FDFAF4;
+    --saffron: #E8930A;
+    --saffron-light: #FBE5B8;
+    --terracotta: #C4684F;
+    --terra-light: #F5E0DA;
+    --purple: #6B4FA0;
+    --purple-light: #EDE8F7;
+    --text-dark: #1A1208;
+    --text-mid: #4A3E2A;
+    --text-muted: #7A6E58;
+    --border: rgba(13,61,46,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--parchment);
+    color: var(--text-dark);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247, 242, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 36px; height: 36px;
+    background: var(--green-deep);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 18px; color: #fff;
+  }
+
+  .nav-brand-text { display: flex; flex-direction: column; gap: 0; }
+  .nav-title { font-size: 15px; font-weight: 600; color: var(--green-deep); line-height: 1.2; }
+  .nav-subtitle { font-size: 10px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { font-size: 13px; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green-deep); }
+
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  /* ── NAV STATS (streak + XP) ── */
+  .nav-stats { display: flex; align-items: center; gap: 14px; }
+  .nav-stat {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 14px; font-weight: 600;
+    padding: 5px 10px; border-radius: 20px;
+    background: var(--card-bg); border: 1px solid var(--border);
+  }
+  .nav-stat .stat-icon { font-size: 16px; line-height: 1; }
+  .nav-stat.streak { color: var(--saffron); }
+  .nav-stat.xp { color: var(--green-mid); }
+  .nav-stat.pop { animation: statPop 0.5s ease; }
+  @keyframes statPop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.28); }
+    100% { transform: scale(1); }
+  }
+
+  .nav-cta {
+    background: var(--green-deep); color: #fff;
+    border: none; border-radius: 8px;
+    padding: 8px 18px; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--green-mid); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(46,139,100,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; color: var(--green-mid);
+    background: rgba(46,139,100,0.1); border: 1px solid rgba(46,139,100,0.2);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 2rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .hero-script-display {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 600;
+    color: var(--green-deep);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    min-height: 1.1em;
+    transition: opacity 0.5s ease;
+  }
+
+  .hero-translation {
+    font-size: 18px; color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    min-height: 1.4em;
+    transition: opacity 0.4s;
+  }
+
+  .hero-lang-tag {
+    font-size: 12px; font-weight: 500;
+    color: var(--saffron);
+    background: var(--saffron-light);
+    padding: 3px 12px; border-radius: 20px;
+    display: inline-block; margin-bottom: 2.5rem;
+    min-width: 80px;
+  }
+
+  .hero-headline {
+    font-family: 'Yatra One', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: var(--green-deep);
+    line-height: 1.2;
+    max-width: 680px;
+    margin: 0 auto 1.25rem;
+  }
+
+  .hero-body {
+    font-size: 17px; color: var(--text-mid);
+    max-width: 520px; margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-hero {
+    background: var(--green-deep); color: #fff;
+    border: none; border-radius: 10px;
+    padding: 14px 28px; font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-hero:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  .btn-hero-outline {
+    background: transparent; color: var(--green-deep);
+    border: 1.5px solid var(--green-deep); border-radius: 10px;
+    padding: 14px 28px; font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-hero-outline:hover { background: rgba(13,61,46,0.06); }
+
+  .hero-dots {
+    display: flex; gap: 6px; justify-content: center; margin-top: 2.5rem;
+  }
+  .hero-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--parchment-dark); cursor: pointer; transition: background 0.3s;
+  }
+  .hero-dot.active { background: var(--green-deep); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--green-light); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Yatra One', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    color: var(--green-deep); margin-bottom: 0.75rem; line-height: 1.2;
+  }
+  .section-body { font-size: 16px; color: var(--text-mid); max-width: 560px; line-height: 1.7; }
+
+  /* ── LANGUAGES ── */
+  #languages { background: var(--card-bg); }
+
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; margin-top: 3rem;
+  }
+
+  .lang-card {
+    background: var(--parchment);
+    border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 1.75rem;
+    cursor: pointer; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .lang-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(13,61,46,0.1); }
+  .lang-card.active { border-color: var(--green-light); border-width: 2px; }
+
+  .lang-card-accent {
+    position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 0 16px 0 80px;
+    opacity: 0.12;
+  }
+
+  .lang-script-big {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 48px; font-weight: 600; line-height: 1;
+    margin-bottom: 12px;
+  }
+  .lang-card-name { font-size: 20px; font-weight: 600; color: var(--green-deep); margin-bottom: 4px; }
+  .lang-card-native { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+  .lang-card-desc { font-size: 14px; color: var(--text-mid); line-height: 1.6; margin-bottom: 20px; }
+
+  .lang-stats { display: flex; gap: 16px; }
+  .lang-stat { text-align: center; }
+  .lang-stat-num { font-size: 22px; font-weight: 600; color: var(--green-deep); }
+  .lang-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+  .lang-badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem;
+  }
+
+  /* ── LESSON MAP ── */
+  #path { background: var(--parchment); }
+  .lesson-map {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0; margin-top: 3rem; position: relative;
+  }
+  .map-node-row {
+    display: flex; align-items: center; gap: 20px;
+    position: relative; padding: 8px 0;
+  }
+  .map-connector {
+    width: 4px; height: 34px;
+    background: var(--parchment-dark);
+    margin: 0 auto;
+  }
+  .map-connector.done { background: var(--green-light); }
+  .map-node {
+    width: 78px; height: 78px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 30px; cursor: pointer; border: none;
+    position: relative; transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.12);
+  }
+  .map-node:not(.locked):hover { transform: translateY(-2px); }
+  .map-node.unlocked { background: var(--green-light); color: #fff; }
+  .map-node.current { background: var(--saffron); color: #fff; box-shadow: 0 0 0 4px var(--saffron-light), 0 5px 0 rgba(0,0,0,0.12); }
+  .map-node.done { background: var(--green-deep); color: #fff; }
+  .map-node.locked { background: var(--parchment-dark); color: var(--text-muted); cursor: not-allowed; box-shadow: 0 5px 0 rgba(0,0,0,0.06); }
+  .map-node-label {
+    position: absolute; left: 100%; margin-left: 16px;
+    white-space: nowrap; font-size: 14px; font-weight: 600;
+    color: var(--green-deep); text-align: left;
+  }
+  .map-node-label small { display: block; font-size: 11px; font-weight: 500; color: var(--text-muted); }
+  .map-node .node-check {
+    position: absolute; bottom: -4px; right: -4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #fff; color: var(--green-deep); font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* ── LESSON ── */
+  #learn { background: var(--green-deep); color: var(--parchment); }
+  #learn .section-title { color: var(--parchment); }
+  #learn .section-body { color: rgba(247,242,232,0.7); }
+
+  .lesson-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start; margin-top: 3rem;
+  }
+
+  .lesson-tabs {
+    display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lesson-tab {
+    font-size: 13px; padding: 7px 16px;
+    border: 1px solid rgba(247,242,232,0.2); border-radius: 8px;
+    color: rgba(247,242,232,0.6); background: transparent; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lesson-tab.active, .lesson-tab:hover {
+    background: rgba(247,242,232,0.12); color: var(--parchment);
+    border-color: rgba(247,242,232,0.4);
+  }
+
+  .vocab-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .vocab-item {
+    display: flex; align-items: center;
+    background: rgba(247,242,232,0.06);
+    border: 1px solid rgba(247,242,232,0.1);
+    border-radius: 12px; padding: 14px 18px; gap: 16px;
+    transition: background 0.2s;
+  }
+  .vocab-item:hover { background: rgba(247,242,232,0.1); }
+
+  .vocab-devanagari {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 24px; font-weight: 600; color: var(--parchment);
+    min-width: 80px;
+  }
+
+  .vocab-info { flex: 1; }
+  .vocab-roman { font-size: 14px; color: rgba(247,242,232,0.5); margin-bottom: 2px; }
+  .vocab-english { font-size: 15px; color: var(--parchment); font-weight: 500; }
+
+  .vocab-play-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(232,147,10,0.2); border: 1px solid rgba(232,147,10,0.4);
+    color: var(--saffron); font-size: 16px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .vocab-play-btn:hover { background: rgba(232,147,10,0.35); }
+  .vocab-play-btn:active { transform: scale(0.9); }
+  .vocab-play-btn.speaking { background: var(--saffron); color: #fff; animation: pulse 0.8s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(232,147,10,0.5);} 50%{ box-shadow:0 0 0 6px rgba(232,147,10,0);} }
+
+  .lesson-quiz-panel {
+    background: rgba(247,242,232,0.05);
+    border: 1px solid rgba(247,242,232,0.12);
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+
+  /* hearts row */
+  .quiz-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .quiz-hearts { display: flex; gap: 4px; font-size: 18px; }
+  .heart { transition: transform 0.3s, opacity 0.3s; }
+  .heart.lost { opacity: 0.25; transform: scale(0.8); filter: grayscale(1); }
+  .quiz-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--saffron); }
+
+  .quiz-question { font-size: 18px; font-weight: 500; color: rgba(247,242,232,0.85); margin-bottom: 0.5rem; }
+  .quiz-prompt {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 40px; font-weight: 600; color: var(--parchment);
+    margin-bottom: 0.5rem; display: flex; align-items: center; gap: 12px;
+  }
+  .quiz-prompt-play {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(232,147,10,0.2); border: 1px solid rgba(232,147,10,0.4);
+    color: var(--saffron); font-size: 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .quiz-prompt-play:hover { background: rgba(232,147,10,0.35); }
+
+  .quiz-feedback {
+    min-height: 22px; margin-bottom: 1rem; font-size: 14px; font-weight: 600;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .quiz-feedback.show { opacity: 1; }
+  .quiz-feedback.ok { color: #8ce8b6; }
+  .quiz-feedback.bad { color: #f5b8ac; }
+  .quiz-feedback .fb-answer {
+    font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .quiz-opt {
+    background: rgba(247,242,232,0.07); border: 1px solid rgba(247,242,232,0.15);
+    border-radius: 10px; padding: 12px; text-align: center;
+    font-size: 14px; color: var(--parchment); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-opt:hover { background: rgba(247,242,232,0.14); }
+  .quiz-opt.selected { background: rgba(232,147,10,0.18); border-color: var(--saffron); box-shadow: inset 0 0 0 1px var(--saffron); color: #fff; }
+  .quiz-opt.correct { background: rgba(46,139,100,0.35); border-color: var(--green-light); color: #a8f0cc; animation: burst 0.5s ease; }
+  .quiz-opt.wrong { background: rgba(196,104,79,0.3); border-color: var(--terracotta); color: #f5b8ac; animation: shake 0.4s ease; }
+  .quiz-opt.locked { pointer-events: none; }
+
+  /* Check / Continue action button (Duolingo-style commit step) */
+  .quiz-action-btn {
+    width: 100%; border: none; border-radius: 12px;
+    padding: 14px; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    background: var(--saffron); color: #fff; box-shadow: 0 4px 0 #b5740a;
+  }
+  .quiz-action-btn:hover:not(:disabled) { background: #f59f1f; }
+  .quiz-action-btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #b5740a; }
+  .quiz-action-btn:disabled { background: rgba(247,242,232,0.12); color: rgba(247,242,232,0.35); box-shadow: 0 4px 0 rgba(0,0,0,0.15); cursor: default; }
+  .quiz-action-btn.continue-ok { background: var(--green-light); box-shadow: 0 4px 0 #1f6d4a; }
+  .quiz-action-btn.continue-ok:hover { background: #36a075; }
+  .quiz-action-btn.continue-ok:active { box-shadow: 0 1px 0 #1f6d4a; }
+  .quiz-action-btn.continue-bad { background: var(--terracotta); box-shadow: 0 4px 0 #9c4a36; }
+  .quiz-action-btn.continue-bad:hover { background: #cf7461; }
+  .quiz-action-btn.continue-bad:active { box-shadow: 0 1px 0 #9c4a36; }
+
+  @keyframes burst {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.08); box-shadow: 0 0 0 0 rgba(46,139,100,0.6); }
+    100% { transform: scale(1); box-shadow: 0 0 0 14px rgba(46,139,100,0); }
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    40% { transform: translateX(7px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+  .panel-flash-ok { animation: flashOk 0.6s ease; }
+  .panel-flash-bad { animation: flashBad 0.5s ease; }
+  @keyframes flashOk { 0%,100%{ background: rgba(247,242,232,0.05);} 30%{ background: rgba(46,139,100,0.18);} }
+  @keyframes flashBad { 0%,100%{ background: rgba(247,242,232,0.05);} 30%{ background: rgba(196,104,79,0.16);} }
+
+  .quiz-progress-bar { height: 4px; background: rgba(247,242,232,0.1); border-radius: 4px; overflow: hidden; }
+  .quiz-progress-fill { height: 100%; background: var(--saffron); border-radius: 4px; transition: width 0.4s ease; }
+
+  /* ── COMPLETION / FAIL OVERLAY ── */
+  .quiz-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(13,61,46,0.97), rgba(26,94,69,0.97));
+    border-radius: 20px;
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem; z-index: 5;
+  }
+  .quiz-overlay.show { display: flex; animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px);} to { opacity:1; transform: translateY(0);} }
+  .overlay-emoji { font-size: 52px; margin-bottom: 0.5rem; animation: pop 0.5s ease; }
+  @keyframes pop { 0%{transform:scale(0);} 70%{transform:scale(1.2);} 100%{transform:scale(1);} }
+  .overlay-title { font-family:'Yatra One',serif; font-size: 28px; color: var(--parchment); margin-bottom: 0.25rem; }
+  .overlay-sub { font-size: 14px; color: rgba(247,242,232,0.7); margin-bottom: 1.25rem; }
+  .overlay-stars { font-size: 34px; letter-spacing: 6px; margin-bottom: 1.25rem; }
+  .overlay-star { opacity: 0.25; }
+  .overlay-star.lit { opacity: 1; animation: pop 0.4s ease backwards; }
+  .overlay-stats { display: flex; gap: 14px; margin-bottom: 1.5rem; }
+  .overlay-stat {
+    background: rgba(247,242,232,0.1); border:1px solid rgba(247,242,232,0.15);
+    border-radius: 12px; padding: 12px 18px; min-width: 90px;
+  }
+  .overlay-stat-num { font-size: 24px; font-weight: 600; color: var(--saffron); }
+  .overlay-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(247,242,232,0.6); }
+  .overlay-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .overlay-btn {
+    border: none; border-radius: 10px; padding: 12px 22px;
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.15s, background 0.2s;
+  }
+  .overlay-btn:hover { transform: translateY(-1px); }
+  .overlay-btn.primary { background: var(--saffron); color: #fff; }
+  .overlay-btn.ghost { background: rgba(247,242,232,0.12); color: var(--parchment); border:1px solid rgba(247,242,232,0.25); }
+
+  /* ── CULTURE ── */
+  #culture { background: var(--parchment); }
+
+  .culture-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; margin-top: 3rem;
+  }
+
+  .culture-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .culture-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(13,61,46,0.08); }
+
+  .culture-img {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-size: 64px; position: relative; overflow: hidden;
+  }
+
+  .culture-body { padding: 1.25rem 1.5rem; }
+  .culture-tag {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;
+  }
+  .culture-title { font-size: 17px; font-weight: 600; color: var(--green-deep); margin-bottom: 6px; }
+  .culture-text { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ── PROGRESS / FEATURES ── */
+  #features { background: var(--card-bg); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 3rem;
+  }
+
+  .feature-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border); border-radius: 14px;
+    background: var(--parchment); transition: border-color 0.2s;
+  }
+  .feature-item:hover { border-color: rgba(46,139,100,0.3); }
+
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .feature-title { font-size: 15px; font-weight: 600; color: var(--green-deep); margin-bottom: 6px; }
+  .feature-desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ── RESOURCES ── */
+  #resources { background: var(--parchment); }
+
+  .resources-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-top: 3rem;
+  }
+
+  .resource-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem; transition: transform 0.2s;
+  }
+  .resource-card:hover { transform: translateY(-2px); }
+  .resource-cat { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .resource-links { display: flex; flex-direction: column; gap: 10px; }
+  .resource-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text-mid); text-decoration: none;
+    padding: 8px 12px; border-radius: 8px; background: var(--parchment);
+    transition: background 0.15s;
+  }
+  .resource-link:hover { background: var(--parchment-dark); color: var(--green-deep); }
+  .resource-link-icon { font-size: 18px; }
+
+  /* ── SDG ── */
+  .sdg-section {
+    background: var(--green-deep); padding: 4rem 2rem;
+  }
+  .sdg-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 2.5rem;
+  }
+  .sdg-card {
+    border: 1px solid rgba(247,242,232,0.15); border-radius: 14px;
+    padding: 1.5rem; text-align: center;
+  }
+  .sdg-num { font-family: 'Yatra One', serif; font-size: 42px; color: var(--saffron); margin-bottom: 4px; }
+  .sdg-title { font-size: 14px; font-weight: 600; color: var(--parchment); margin-bottom: 6px; }
+  .sdg-desc { font-size: 12px; color: rgba(247,242,232,0.55); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); padding: 3rem 2rem;
+    text-align: center; color: rgba(247,242,232,0.4);
+    font-size: 13px;
+  }
+  .footer-brand {
+    font-family: 'Yatra One', serif; font-size: 22px;
+    color: var(--parchment); margin-bottom: 6px;
+  }
+  .footer-tagline { color: rgba(247,242,232,0.5); font-size: 14px; margin-bottom: 1.5rem; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .footer-links a { color: rgba(247,242,232,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--parchment); }
+
+  /* ── SCROLL DIVIDER ── */
+  .divider {
+    height: 1px; background: var(--border); margin: 0;
+  }
+
+  /* ── XP TOAST ── */
+  .xp-toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--green-deep); color: #fff;
+    padding: 12px 22px; border-radius: 30px; font-size: 15px; font-weight: 600;
+    box-shadow: 0 8px 30px rgba(13,61,46,0.3); z-index: 200;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .xp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .nav-subtitle { display: none; }
+    .nav-cta { display: none; }
+    .lesson-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 3rem 1.25rem 2.5rem; min-height: 80vh; }
+    .map-node-label { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">म</div>
+    <div class="nav-brand-text">
+      <span class="nav-title">Matri Bhasa</span>
+      <span class="nav-subtitle">मातृ भाषा · Mother Language</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#languages">Languages</a>
+    <a href="#path">Path</a>
+    <a href="#learn">Learn</a>
+    <a href="#culture">Culture</a>
+    <a href="#resources">Resources</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-stats">
+      <div class="nav-stat streak" id="navStreak" title="Daily streak — keep it alive!">
+        <span class="stat-icon">🔥</span><span id="streakVal">0</span>
+      </div>
+      <div class="nav-stat xp" id="navXp" title="Total XP earned">
+        <span class="stat-icon">⚡</span><span id="xpVal">0</span>
+      </div>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('learn').scrollIntoView({behavior:'smooth'})">Start learning →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">🇳🇵 Preserving Nepal's indigenous languages</div>
+  <div class="hero-script-display" id="heroWord">नमस्ते</div>
+  <div class="hero-translation" id="heroTranslation">Hello · Greetings</div>
+  <div class="hero-lang-tag" id="heroLang">Nepali</div>
+  <h1 class="hero-headline">Learn your mother tongue. Connect with your roots.</h1>
+  <p class="hero-body">Interactive lessons in Nepali, Newari, and Tamang — built for young Nepalis aged 13–19 who want to stay connected to their heritage.</p>
+  <div class="hero-actions">
+    <button class="btn-hero" onclick="document.getElementById('learn').scrollIntoView({behavior:'smooth'})">Start a free lesson</button>
+    <button class="btn-hero-outline" onclick="document.getElementById('languages').scrollIntoView({behavior:'smooth'})">Explore languages</button>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="setHeroWord(0)"></div>
+    <div class="hero-dot" onclick="setHeroWord(1)"></div>
+    <div class="hero-dot" onclick="setHeroWord(2)"></div>
+    <div class="hero-dot" onclick="setHeroWord(3)"></div>
+    <div class="hero-dot" onclick="setHeroWord(4)"></div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <div class="container">
+    <p class="section-eyebrow">Languages</p>
+    <h2 class="section-title">Choose your language</h2>
+    <p class="section-body">Each section has its own lessons, quizzes, cultural stories, and vocabulary — crafted with help from native speakers and community educators.</p>
+
+    <div class="lang-grid">
+
+      <div class="lang-card active" onclick="selectLanguage(this,'Nepali')">
+        <div class="lang-card-accent" style="background:var(--green-mid);"></div>
+        <div class="lang-badge" style="background:rgba(46,139,100,0.1);color:var(--green-mid);">Most popular</div>
+        <div class="lang-script-big" style="color:var(--green-deep);">नेपाली</div>
+        <div class="lang-card-name">Nepali</div>
+        <div class="lang-card-native">नेपाली भाषा · Devanagari script</div>
+        <div class="lang-card-desc">The official language of Nepal, spoken by over 17 million people. A great starting point for any learner.</div>
+        <div class="lang-stats">
+          <div class="lang-stat"><div class="lang-stat-num">24</div><div class="lang-stat-label">Lessons</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">8</div><div class="lang-stat-label">Quizzes</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">200+</div><div class="lang-stat-label">Words</div></div>
+        </div>
+      </div>
+
+      <div class="lang-card" onclick="selectLanguage(this,'Newari')">
+        <div class="lang-card-accent" style="background:var(--purple);"></div>
+        <div class="lang-badge" style="background:var(--purple-light);color:var(--purple);">Endangered</div>
+        <div class="lang-script-big" style="color:var(--purple);">नेवाः</div>
+        <div class="lang-card-name">Newari</div>
+        <div class="lang-card-native">नेपाल भाषा · Nepal Bhasa</div>
+        <div class="lang-card-desc">The classical language of the Kathmandu Valley and the Newar people, with a rich literary tradition dating back centuries.</div>
+        <div class="lang-stats">
+          <div class="lang-stat"><div class="lang-stat-num">14</div><div class="lang-stat-label">Lessons</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">5</div><div class="lang-stat-label">Quizzes</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">120+</div><div class="lang-stat-label">Words</div></div>
+        </div>
+      </div>
+
+      <div class="lang-card" onclick="selectLanguage(this,'Tamang')">
+        <div class="lang-card-accent" style="background:var(--terracotta);"></div>
+        <div class="lang-badge" style="background:var(--terra-light);color:var(--terracotta);">Indigenous</div>
+        <div class="lang-script-big" style="color:var(--terracotta);">तामाङ</div>
+        <div class="lang-card-name">Tamang</div>
+        <div class="lang-card-native">तामाङ सेल्बे · Tibeto-Burman</div>
+        <div class="lang-card-desc">Spoken by the Tamang people of the hills surrounding Kathmandu, with unique tonal characteristics and Tibetan roots.</div>
+        <div class="lang-stats">
+          <div class="lang-stat"><div class="lang-stat-num">9</div><div class="lang-stat-label">Lessons</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">3</div><div class="lang-stat-label">Quizzes</div></div>
+          <div class="lang-stat"><div class="lang-stat-num">80+</div><div class="lang-stat-label">Words</div></div>
+        </div>
+      </div>
+
+      <div class="lang-card" style="border-style: dashed;cursor:default;" onclick="showXpToast('More languages coming in phase 2 🙏')">
+        <div class="lang-badge" style="background:var(--saffron-light);color:#8B5A00;">Coming soon</div>
+        <div class="lang-script-big" style="color:var(--saffron);opacity:0.5;">मैथिली</div>
+        <div class="lang-card-name" style="color:var(--text-muted);">More languages</div>
+        <div class="lang-card-native" style="color:var(--text-muted);">Maithili, Sherpa, Rai…</div>
+        <div class="lang-card-desc" style="color:var(--text-muted);">We are working with community educators to add more indigenous languages in phase 2 of the project.</div>
+        <div style="font-size:13px;color:var(--saffron);font-weight:500;margin-top:1rem;">→ Suggest a language</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LESSON PATH MAP -->
+<section id="path">
+  <div class="container">
+    <p class="section-eyebrow">Your journey</p>
+    <h2 class="section-title">Follow the path</h2>
+    <p class="section-body">Complete a lesson to unlock the next. Tap an unlocked node to jump straight into that lesson's vocab and quiz.</p>
+    <div class="lesson-map" id="lessonMap"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEARN -->
+<section id="learn">
+  <div class="container">
+    <p class="section-eyebrow" style="color:rgba(247,242,232,0.5);">Interactive lessons</p>
+    <h2 class="section-title">Start learning today</h2>
+    <p class="section-body">Learn the words, hear how they sound, then test yourself. Get them right to earn XP — but watch your hearts!</p>
+
+    <div class="lesson-wrapper">
+      <!-- Vocab side -->
+      <div>
+        <div class="lesson-tabs" id="lessonTabs">
+          <button class="lesson-tab active" onclick="switchTab(this,'basics')">👋 Basics</button>
+          <button class="lesson-tab" onclick="switchTab(this,'commerce')">🛍️ Shopping</button>
+          <button class="lesson-tab" onclick="switchTab(this,'transport')">🚕 Transport</button>
+          <button class="lesson-tab" onclick="switchTab(this,'directions')">🧭 Directions</button>
+          <button class="lesson-tab" onclick="switchTab(this,'numbers')">🔢 Numbers</button>
+          <button class="lesson-tab" onclick="switchTab(this,'time')">🕐 Time</button>
+          <button class="lesson-tab" onclick="switchTab(this,'food')">🍲 Food</button>
+          <button class="lesson-tab" onclick="switchTab(this,'health')">🚑 Emergency</button>
+        </div>
+        <div class="vocab-list" id="vocabList"><!-- rendered by JS --></div>
+      </div>
+
+      <!-- Quiz side -->
+      <div class="lesson-quiz-panel" id="quizPanel">
+        <div class="quiz-topbar">
+          <div class="quiz-label" id="quizLabel">Quick quiz · Greetings</div>
+          <div class="quiz-hearts" id="quizHearts"></div>
+        </div>
+        <div class="quiz-question">What does this word mean?</div>
+        <div class="quiz-prompt">
+          <span id="quizWord">—</span>
+          <button class="quiz-prompt-play" title="Hear pronunciation" onclick="speakCurrentQuiz(this)">▶</button>
+        </div>
+        <div class="quiz-options" id="quizOptions"><!-- rendered by JS --></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="quiz-action-btn" id="quizActionBtn" disabled onclick="quizAction()">Check</button>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin:14px 0 10px;">
+          <span style="font-size:12px;color:rgba(247,242,232,0.4);">Question <span id="qNum">1</span> of <span id="qTotal">4</span></span>
+          <span style="font-size:12px;color:var(--saffron);" id="qScore">Score: 0</span>
+        </div>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizBar" style="width:0%;"></div></div>
+
+        <!-- Completion / fail overlay -->
+        <div class="quiz-overlay" id="quizOverlay">
+          <div class="overlay-emoji" id="overlayEmoji">🎉</div>
+          <div class="overlay-title" id="overlayTitle">Lesson complete!</div>
+          <div class="overlay-sub" id="overlaySub">Great work — keep the streak alive.</div>
+          <div class="overlay-stars" id="overlayStars">
+            <span class="overlay-star">★</span><span class="overlay-star">★</span><span class="overlay-star">★</span>
+          </div>
+          <div class="overlay-stats">
+            <div class="overlay-stat"><div class="overlay-stat-num" id="overlayXp">+0</div><div class="overlay-stat-label">XP earned</div></div>
+            <div class="overlay-stat"><div class="overlay-stat-num" id="overlayStreak">🔥 0</div><div class="overlay-stat-label">Day streak</div></div>
+          </div>
+          <div class="overlay-actions">
+            <button class="overlay-btn primary" id="overlayNext" onclick="overlayNext()">Next lesson →</button>
+            <button class="overlay-btn ghost" onclick="restartLesson()">Practice again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CULTURE -->
+<section id="culture">
+  <div class="container">
+    <p class="section-eyebrow">Culture & heritage</p>
+    <h2 class="section-title">Language lives in culture</h2>
+    <p class="section-body">Words carry meaning when you know where they come from. Explore festivals, stories, and traditions that shaped Nepal's languages.</p>
+
+    <div class="culture-grid">
+      <div class="culture-card">
+        <div class="culture-img" style="background:linear-gradient(135deg,#FBE5B8,#F5DBA0);">🏮</div>
+        <div class="culture-body">
+          <span class="culture-tag" style="background:var(--saffron-light);color:#7A5200;">Festival</span>
+          <div class="culture-title">Indra Jatra — इन्द्र जात्रा</div>
+          <div class="culture-text">The eight-day festival of the Newar people, celebrating the god Indra. Learn the Newari words for offerings, masks, and the chariot procession.</div>
+        </div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-img" style="background:linear-gradient(135deg,#EDE8F7,#D8D0F0);">📖</div>
+        <div class="culture-body">
+          <span class="culture-tag" style="background:var(--purple-light);color:#4A2F80;">Folktale</span>
+          <div class="culture-title">The legend of Manjushri</div>
+          <div class="culture-text">How the Kathmandu Valley was formed — told in both Newari and Nepali, with vocabulary notes throughout to help you learn as you read.</div>
+        </div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-img" style="background:linear-gradient(135deg,#F5E0DA,#ECC4BA);">🥁</div>
+        <div class="culture-body">
+          <span class="culture-tag" style="background:var(--terra-light);color:#8B3020;">Tradition</span>
+          <div class="culture-title">Tamang Selo music</div>
+          <div class="culture-text">The haunting folk music of the Tamang people — played on the damphu drum and tungna lute. Learn the vocabulary of instruments, dances, and seasonal songs.</div>
+        </div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-img" style="background:linear-gradient(135deg,#E1F5EE,#B8E8D4);">🏔️</div>
+        <div class="culture-body">
+          <span class="culture-tag" style="background:rgba(46,139,100,0.1);color:var(--green-mid);">Proverb</span>
+          <div class="culture-title">Nepali proverbs</div>
+          <div class="culture-text">"जहाँ छ धैर्य, त्यहाँ छ जय" — Where there is patience, there is victory. Explore the wisdom packed into Nepal's most beloved sayings.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES / PROGRESS -->
+<section id="features">
+  <div class="container">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">Built to keep you going</h2>
+    <p class="section-body">Small daily habits build fluency. Matri Bhasa gives you the tools to stay consistent and see real progress.</p>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(46,139,100,0.1);">📊</div>
+        <div class="feature-title">Progress tracker</div>
+        <div class="feature-desc">See exactly what you've learned, set weekly goals, and earn badges as you level up in each language.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:var(--saffron-light);">🔔</div>
+        <div class="feature-title">Daily reminders</div>
+        <div class="feature-desc">A word of the day, a study tip, or a motivational message from community elders — delivered every morning.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:var(--purple-light);">🎮</div>
+        <div class="feature-title">Language games</div>
+        <div class="feature-desc">Flashcard flips, word matching, and fill-in-the-blank challenges — learning that feels like playing.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:var(--terra-light);">🎓</div>
+        <div class="feature-title">Career guidance</div>
+        <div class="feature-desc">Scholarships, internships, and volunteering opportunities for young Nepalis — all in one place.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:rgba(46,139,100,0.1);">📚</div>
+        <div class="feature-title">Resource library</div>
+        <div class="feature-desc">Curated links to online classes, workshops, tutoring sessions, and downloadable study materials.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:var(--saffron-light);">🤝</div>
+        <div class="feature-title">Community</div>
+        <div class="feature-desc">Connect with other learners, share your progress, and practice with native speakers in your area.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SDG -->
+<div class="sdg-section">
+  <div class="container">
+    <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,242,232,0.4);margin-bottom:0.75rem;">Supporting the UN Sustainable Development Goals</p>
+    <h2 style="font-family:'Yatra One',serif;font-size:clamp(22px,3.5vw,36px);color:var(--parchment);margin-bottom:0;">More than a language app — a community project</h2>
+    <div class="sdg-grid">
+      <div class="sdg-card">
+        <div class="sdg-num">4</div>
+        <div class="sdg-title">Quality Education</div>
+        <div class="sdg-desc">Free, accessible lessons that reach students in Kathmandu and beyond, regardless of background.</div>
+      </div>
+      <div class="sdg-card">
+        <div class="sdg-num">10</div>
+        <div class="sdg-title">Reduced Inequalities</div>
+        <div class="sdg-desc">Preserving indigenous languages ensures minority communities are seen, heard, and included.</div>
+      </div>
+      <div class="sdg-card">
+        <div class="sdg-num">11</div>
+        <div class="sdg-title">Sustainable Communities</div>
+        <div class="sdg-desc">Cultural heritage and identity are what make communities resilient — language is the foundation.</div>
+      </div>
+      <div class="sdg-card">
+        <div class="sdg-num">17</div>
+        <div class="sdg-title">Partnerships</div>
+        <div class="sdg-desc">Built in collaboration with teachers, elders, students, and local community organisations.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="container">
+    <p class="section-eyebrow">Resources</p>
+    <h2 class="section-title">Everything you need to go further</h2>
+    <p class="section-body">Curated links to help you learn beyond Matri Bhasa — classes, workshops, scholarships, and more.</p>
+
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-cat" style="color:var(--green-mid);">📗 Language learning</div>
+        <div class="resource-links">
+          <a href="#" class="resource-link"><span class="resource-link-icon">🌐</span>Online Nepali classes (Nepal Academy)</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">🎧</span>Newari audio library (TU Linguistics)</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">📖</span>Tamang dictionary PDF</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-cat" style="color:var(--purple);">🎓 Scholarships & careers</div>
+        <div class="resource-links">
+          <a href="#" class="resource-link"><span class="resource-link-icon">💰</span>Nepal government scholarships</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">🏢</span>Internships at cultural institutions</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">🤲</span>Volunteer with language preservation NGOs</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-cat" style="color:var(--terracotta);">🏛️ Culture & community</div>
+        <div class="resource-links">
+          <a href="#" class="resource-link"><span class="resource-link-icon">🗺️</span>Newar heritage sites guide</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">🥁</span>Tamang cultural society events</a>
+          <a href="#" class="resource-link"><span class="resource-link-icon">📺</span>Nepali folk stories (YouTube)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Matri Bhasa · मातृ भाषा</div>
+  <div class="footer-tagline">Preserving Nepal's mother tongues, one lesson at a time.</div>
+  <div class="footer-links">
+    <a href="#languages">Languages</a>
+    <a href="#path">Path</a>
+    <a href="#learn">Learn</a>
+    <a href="#culture">Culture</a>
+    <a href="#resources">Resources</a>
+    <a href="#">Contact</a>
+  </div>
+  <div>Made with ❤️ by young Nepalis, for young Nepalis. Free forever.</div>
+  <div style="margin-top:8px;font-size:11px;">Supporting SDG 4 · SDG 10 · SDG 11 · SDG 17</div>
+</footer>
+
+<!-- XP TOAST -->
+<div class="xp-toast" id="xpToast"><span>⚡</span><span id="xpToastText">+10 XP</span></div>
+
+<script>
+  /* ─────────────────────────────────────────────
+     PERSISTENT STATE  (localStorage)
+  ───────────────────────────────────────────── */
+  const STORE = 'matriBhasa';
+  function loadState() {
+    let s;
+    try { s = JSON.parse(localStorage.getItem(STORE)); } catch(e) { s = null; }
+    return Object.assign({
+      xp: 0,
+      streak: 0,
+      lastActive: null,          // YYYY-MM-DD of last completed session
+      unlocked: ['basics'],      // lessons the user can access
+      completed: []              // lessons finished at least once
+    }, s || {});
+  }
+  function saveState() { localStorage.setItem(STORE, JSON.stringify(state)); }
+  let state = loadState();
+
+  function todayStr() { return new Date().toISOString().slice(0,10); }
+  function yesterdayStr() {
+    const d = new Date(); d.setDate(d.getDate() - 1);
+    return d.toISOString().slice(0,10);
+  }
+
+  /* update the nav chips */
+  function renderStats(pop) {
+    document.getElementById('streakVal').textContent = state.streak;
+    document.getElementById('xpVal').textContent = state.xp;
+    if (pop) {
+      ['navStreak','navXp'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+      });
+    }
+  }
+
+  /* award XP + floating toast */
+  function awardXp(amount) {
+    state.xp += amount;
+    saveState();
+    renderStats(true);
+    showXpToast('+' + amount + ' XP');
+  }
+  let toastTimer;
+  function showXpToast(text) {
+    const t = document.getElementById('xpToast');
+    document.getElementById('xpToastText').textContent = text;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 1400);
+  }
+
+  /* daily streak bookkeeping — called when a session completes */
+  function bumpStreak() {
+    const today = todayStr();
+    if (state.lastActive === today) {
+      // already counted today, streak unchanged
+    } else if (state.lastActive === yesterdayStr()) {
+      state.streak += 1;
+    } else {
+      state.streak = 1; // first day or streak broken
+    }
+    state.lastActive = today;
+    saveState();
+    renderStats(true);
+  }
+
+  /* ─────────────────────────────────────────────
+     WEB SPEECH API — pronunciation
+  ───────────────────────────────────────────── */
+  function speak(text, btn) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ne-NP';
+    u.rate = 0.85;
+    if (btn) {
+      btn.classList.add('speaking');
+      u.onend = u.onerror = () => btn.classList.remove('speaking');
+    }
+    speechSynthesis.speak(u);
+  }
+
+  /* ─────────────────────────────────────────────
+     HERO WORD CYCLER
+  ───────────────────────────────────────────── */
+  const heroWords = [
+    { word: 'नमस्ते', translation: 'Hello · Greetings', lang: 'Nepali' },
+    { word: 'जि हलः', translation: 'Greetings (formal)', lang: 'Newari' },
+    { word: 'ल्हासो', translation: 'How are you?', lang: 'Tamang' },
+    { word: 'धन्यवाद', translation: 'Thank you', lang: 'Nepali' },
+    { word: 'स्वनिगः', translation: 'Welcome', lang: 'Newari' },
+  ];
+  let heroIdx = 0, heroTimer;
+  function setHeroWord(i, animate = true) {
+    heroIdx = i;
+    const w = heroWords[i];
+    const wordEl = document.getElementById('heroWord');
+    const transEl = document.getElementById('heroTranslation');
+    const langEl = document.getElementById('heroLang');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (animate) {
+      wordEl.style.opacity = '0'; transEl.style.opacity = '0';
+      setTimeout(() => {
+        wordEl.textContent = w.word; transEl.textContent = w.translation; langEl.textContent = w.lang;
+        wordEl.style.opacity = '1'; transEl.style.opacity = '1';
+      }, 400);
+    } else {
+      wordEl.textContent = w.word; transEl.textContent = w.translation; langEl.textContent = w.lang;
+    }
+    dots.forEach((d, di) => d.classList.toggle('active', di === i));
+    clearInterval(heroTimer);
+    heroTimer = setInterval(() => setHeroWord((heroIdx + 1) % heroWords.length), 3000);
+  }
+  heroTimer = setInterval(() => setHeroWord((heroIdx + 1) % heroWords.length), 3000);
+
+  /* ─────────────────────────────────────────────
+     VOCAB DATA — quizzes are generated from this
+  ───────────────────────────────────────────── */
+  const LESSON_ORDER = ['basics', 'commerce', 'transport', 'directions', 'numbers', 'time', 'food', 'health'];
+  const LESSON_META = {
+    basics:     { name: 'Basics',      icon: '👋' },
+    commerce:   { name: 'Shopping',    icon: '🛍️' },
+    transport:  { name: 'Transport',   icon: '🚕' },
+    directions: { name: 'Directions',  icon: '🧭' },
+    numbers:    { name: 'Numbers',     icon: '🔢' },
+    time:       { name: 'Time & dates',icon: '🕐' },
+    food:       { name: 'Food & drink',icon: '🍲' },
+    health:     { name: 'Emergency',   icon: '🚑' },
+  };
+  const vocabData = {
+    basics: [
+      { dev: 'नमस्ते', roman: 'Namaste', en: 'Hello / Goodbye' },
+      { dev: 'तपाईलाई कस्तो छ?', roman: 'Tapai lai kasto cha?', en: 'How are you?' },
+      { dev: 'मलाई सञ्चै छ', roman: 'Malai sanchai chha', en: "I'm fine" },
+      { dev: 'धन्यवाद', roman: 'Dhanyabad', en: 'Thank you' },
+      { dev: 'माफ गर्नुहोस्', roman: 'Maaf garnuhos', en: 'Sorry' },
+      { dev: 'स्वागत छ', roman: 'Swagat chha', en: 'Welcome' },
+      { dev: 'हजुर', roman: 'Hajur', en: 'Excuse me / Please' },
+      { dev: 'हो', roman: 'Ho', en: 'Yes' },
+      { dev: 'होइन', roman: 'Hoina', en: 'No' },
+      { dev: 'केही छैन', roman: 'Kehi chaina', en: "You're welcome" },
+      { dev: 'म बुझ्छु', roman: 'Ma bujhchu', en: 'I understand' },
+      { dev: 'मेरो नाम ... हो', roman: 'Mero naam... ho', en: 'My name is...' },
+    ],
+    commerce: [
+      { dev: 'कति?', roman: 'Kati?', en: 'How much is it?' },
+      { dev: 'सस्तो', roman: 'Sasto', en: 'Cheap / Good price' },
+      { dev: 'महँगो', roman: 'Mahango', en: 'Expensive' },
+      { dev: 'यो किन्न चाहन्छु', roman: 'Yo kinna chahanchhu', en: "I'd like to buy this" },
+      { dev: 'मलाई यो राम्रो लाग्यो', roman: 'Malai yo ramro lagyo', en: 'I like it' },
+      { dev: 'पैसा', roman: 'Paisa', en: 'Money' },
+      { dev: 'म हेर्दैछु', roman: 'Ma herdai chu', en: "I'm just looking" },
+      { dev: 'मूल्य कम गर्नुहोस्', roman: 'Mulya kam garnuhos', en: 'Lower the price' },
+    ],
+    transport: [
+      { dev: 'म ... मा जान्छु', roman: 'Ma... ma janchhu', en: "I'd like to go to..." },
+      { dev: 'हवाई जहाज', roman: 'Hawai jahaj', en: 'Plane' },
+      { dev: 'नाउ', roman: 'Nau', en: 'Boat' },
+      { dev: 'रेल', roman: 'Rel', en: 'Train' },
+      { dev: 'ट्याक्सी', roman: 'Taksi', en: 'Taxi' },
+      { dev: 'बस', roman: 'Bus', en: 'Bus' },
+      { dev: 'मोटरसाइकल', roman: 'Motarsaikal', en: 'Motorbike' },
+      { dev: 'गाडी', roman: 'Gaadi', en: 'Car' },
+      { dev: 'बाइक', roman: 'Baika', en: 'Bike' },
+    ],
+    directions: [
+      { dev: '... कहाँ छ?', roman: '...kaha cha?', en: 'Where is...?' },
+      { dev: 'बैंक', roman: 'Bank', en: 'Bank' },
+      { dev: 'होटल', roman: 'Hotel', en: 'Hotel' },
+      { dev: 'अस्पताल', roman: 'Aspatal', en: 'Hospital' },
+      { dev: 'शहर', roman: 'Shahar', en: 'City centre' },
+      { dev: 'सिधा', roman: 'Sidha', en: 'Straight ahead' },
+      { dev: 'बायाँ', roman: 'Baya', en: 'Left' },
+      { dev: 'दायाँ', roman: 'Daya', en: 'Right' },
+      { dev: 'नजिक छ?', roman: 'Nira cha?', en: 'Is it close?' },
+      { dev: 'टाढा छ?', roman: 'Tadha cha?', en: 'Is it far?' },
+      { dev: 'उत्तर', roman: 'Uttar', en: 'North' },
+      { dev: 'दक्षिण', roman: 'Dakshin', en: 'South' },
+      { dev: 'पूर्व', roman: 'Purba', en: 'East' },
+      { dev: 'पश्चिम', roman: 'Pashchim', en: 'West' },
+    ],
+    numbers: [
+      { dev: 'एक', roman: 'Ek', en: 'One' },
+      { dev: 'दुई', roman: 'Dui', en: 'Two' },
+      { dev: 'तीन', roman: 'Tin', en: 'Three' },
+      { dev: 'चार', roman: 'Char', en: 'Four' },
+      { dev: 'पाँच', roman: 'Panch', en: 'Five' },
+      { dev: 'छ', roman: 'Chha', en: 'Six' },
+      { dev: 'सात', roman: 'Sat', en: 'Seven' },
+      { dev: 'आठ', roman: 'Ath', en: 'Eight' },
+      { dev: 'नौ', roman: 'Nau', en: 'Nine' },
+      { dev: 'दश', roman: 'Das', en: 'Ten' },
+      { dev: 'बीस', roman: 'Bis', en: 'Twenty' },
+      { dev: 'पचास', roman: 'Pachas', en: 'Fifty' },
+      { dev: 'एक सय', roman: 'Ek say', en: 'One hundred' },
+    ],
+    time: [
+      { dev: 'कति बजे?', roman: 'Kati baje?', en: 'What time is it?' },
+      { dev: 'कहिले?', roman: 'Kahile?', en: 'When?' },
+      { dev: 'हिजो', roman: 'Hijo', en: 'Yesterday' },
+      { dev: 'आज', roman: 'Aaja', en: 'Today' },
+      { dev: 'भोलि', roman: 'Bholi', en: 'Tomorrow' },
+      { dev: 'बिहान', roman: 'Bihaana', en: 'Morning' },
+      { dev: 'साँझ', roman: 'Saanjh', en: 'Evening' },
+      { dev: 'सोमबार', roman: 'Sombar', en: 'Monday' },
+      { dev: 'शुक्रबार', roman: 'Sukrabar', en: 'Friday' },
+      { dev: 'आइतबार', roman: 'Aitabar', en: 'Sunday' },
+    ],
+    food: [
+      { dev: 'मलाई भोक लाग्यो', roman: 'Malai bhok lagyo', en: "I'm hungry" },
+      { dev: 'मलाई तिर्खा लाग्यो', roman: 'Malai tirkha lagyo', en: "I'm thirsty" },
+      { dev: 'पानी', roman: 'Pani', en: 'Water' },
+      { dev: 'चिया', roman: 'Chiya', en: 'Tea' },
+      { dev: 'कफी', roman: 'Kafi', en: 'Coffee' },
+      { dev: 'रक्सी', roman: 'Raksi', en: 'Wine / Liquor' },
+      { dev: 'मिठो छ', roman: 'Mitho cha', en: "It's delicious" },
+      { dev: 'म शाकाहारी हुँ', roman: 'Ma shakahari hun', en: "I'm vegetarian" },
+      { dev: 'पिरो नगर्नुहोस्', roman: 'Piro nagarnuhos', en: 'Not spicy please' },
+      { dev: 'बिल दिनुहोस्', roman: 'Bil dinuhos', en: 'The bill, please' },
+    ],
+    health: [
+      { dev: 'मलाई डाक्टर चाहिन्छ', roman: 'Malai daktar chahincha', en: 'I need a doctor' },
+      { dev: 'एम्बुलेन्स बोलाउनुहोस्', roman: 'Ambulance bolaunuhos', en: 'Call an ambulance' },
+      { dev: 'मलाई सञ्चो छैन', roman: 'Malai sancho chhaina', en: "I don't feel well" },
+      { dev: 'यहाँ दुख्छ', roman: 'Yahan dukha cha', en: 'It hurts here' },
+      { dev: 'शौचालय कहाँ छ?', roman: 'Sauchalaya kaha cha?', en: "Where's the restroom?" },
+      { dev: 'गुहार!', roman: 'Guhar!', en: 'Help!' },
+      { dev: 'प्रहरी', roman: 'Prahari', en: 'Police' },
+      { dev: 'खतरा', roman: 'Khatara', en: 'Danger' },
+      { dev: 'म हराएँ', roman: 'Ma haraye', en: "I'm lost" },
+      { dev: 'राम्रो दिन होस्!', roman: 'Ramro din hos!', en: 'Have a nice day!' },
+    ],
+  };
+
+  let currentTab = 'basics';
+
+  function renderVocab(key) {
+    const list = document.getElementById('vocabList');
+    list.innerHTML = vocabData[key].map(v => `
+      <div class="vocab-item">
+        <div class="vocab-devanagari">${v.dev}</div>
+        <div class="vocab-info">
+          <div class="vocab-roman">${v.roman}</div>
+          <div class="vocab-english">${v.en}</div>
+        </div>
+        <button class="vocab-play-btn" title="Play pronunciation"
+          onclick="speak('${v.dev}', this)">▶</button>
+      </div>
+    `).join('');
+  }
+
+  function switchTab(el, key) {
+    document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
+    if (el) el.classList.add('active');
+    currentTab = key;
+    renderVocab(key);
+    startQuiz(key);   // quiz now follows the selected tab
+  }
+
+  /* ─────────────────────────────────────────────
+     QUIZ  — built from the current tab's vocab
+  ───────────────────────────────────────────── */
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // a deduped pool of English meanings across all lessons, used for wrong-answer distractors
+  const ALL_MEANINGS = [...new Set(Object.values(vocabData).flat().map(v => v.en))];
+
+  const QUIZ_SIZE = 6; // sample at most this many words per lesson so sessions stay short
+
+  function buildQuiz(key) {
+    const words = shuffle(vocabData[key]).slice(0, QUIZ_SIZE);
+    return words.map(w => {
+      const distractors = shuffle(ALL_MEANINGS.filter(m => m !== w.en)).slice(0, 3);
+      return {
+        dev: w.dev,
+        roman: w.roman,
+        answer: w.en,
+        options: shuffle([w.en, ...distractors])
+      };
+    });
+  }
+
+  const MAX_HEARTS = 3;
+  // Duolingo-style queue: a question stays in the queue until answered correctly.
+  let queue = [];           // questions still to be mastered (front = current)
+  let totalQuestions = 0;   // distinct words in the lesson (for the progress bar)
+  let mastered = 0;         // distinct words answered correctly so far
+  let hearts = MAX_HEARTS, sessionXp = 0, quizKey = 'basics';
+  let phase = 'answer';     // 'answer' = awaiting Check, 'continue' = result shown
+  let selectedText = null;  // currently picked option text
+
+  function renderHearts() {
+    const h = document.getElementById('quizHearts');
+    let out = '';
+    for (let i = 0; i < MAX_HEARTS; i++) {
+      out += `<span class="heart ${i < hearts ? '' : 'lost'}">${i < hearts ? '❤️' : '🤍'}</span>`;
+    }
+    h.innerHTML = out;
+  }
+
+  function startQuiz(key) {
+    quizKey = key;
+    queue = buildQuiz(key);
+    totalQuestions = queue.length;
+    mastered = 0; hearts = MAX_HEARTS; sessionXp = 0;
+    document.getElementById('quizOverlay').classList.remove('show');
+    document.getElementById('quizLabel').textContent = 'Quick quiz · ' + LESSON_META[key].name;
+    document.getElementById('qTotal').textContent = totalQuestions;
+    renderHearts();
+    renderQuiz();
+  }
+
+  function renderQuiz() {
+    const q = queue[0];
+    phase = 'answer';
+    selectedText = null;
+    document.getElementById('quizWord').textContent = q.dev;
+    document.getElementById('qNum').textContent = Math.min(mastered + 1, totalQuestions);
+    document.getElementById('qScore').textContent = mastered + ' / ' + totalQuestions + ' mastered';
+    document.getElementById('quizBar').style.width = (mastered / totalQuestions * 100) + '%';
+
+    const fb = document.getElementById('quizFeedback');
+    fb.className = 'quiz-feedback';
+    fb.innerHTML = '';
+
+    const opts = document.getElementById('quizOptions');
+    opts.innerHTML = q.options.map(o =>
+      `<div class="quiz-opt" onclick="selectOption(this)">${o}</div>`
+    ).join('');
+
+    const btn = document.getElementById('quizActionBtn');
+    btn.className = 'quiz-action-btn';
+    btn.textContent = 'Check';
+    btn.disabled = true;
+  }
+
+  function speakCurrentQuiz(btn) {
+    if (queue[0]) speak(queue[0].dev, btn);
+  }
+
+  // Step 1: pick an answer (highlights only — does NOT commit)
+  function selectOption(el) {
+    if (phase !== 'answer') return;
+    document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedText = el.textContent;
+    document.getElementById('quizActionBtn').disabled = false;
+  }
+
+  // The action button does Check first, then Continue
+  function quizAction() {
+    if (phase === 'answer') checkAnswer();
+    else continueQuiz();
+  }
+
+  // Step 2: commit the selected answer and show the result
+  function checkAnswer() {
+    if (selectedText == null) return;
+    const q = queue[0];
+    const correct = q.answer;
+    const panel = document.getElementById('quizPanel');
+    const fb = document.getElementById('quizFeedback');
+    const btn = document.getElementById('quizActionBtn');
+
+    // lock the options
+    document.querySelectorAll('.quiz-opt').forEach(o => {
+      o.classList.add('locked');
+      if (o.textContent === correct) o.classList.add('correct');
+      if (o.textContent === selectedText && selectedText !== correct) o.classList.add('wrong');
+    });
+
+    if (selectedText === correct) {
+      sessionXp += 10;
+      awardXp(10);
+      panel.classList.remove('panel-flash-bad'); void panel.offsetWidth; panel.classList.add('panel-flash-ok');
+      fb.className = 'quiz-feedback ok show';
+      fb.innerHTML = `✓ Correct! &nbsp;<span class="fb-answer">${q.dev}</span> (${q.roman}) — ${correct}`;
+      btn.classList.add('continue-ok');
+      q._correct = true;
+    } else {
+      hearts--;
+      renderHearts();
+      panel.classList.remove('panel-flash-ok'); void panel.offsetWidth; panel.classList.add('panel-flash-bad');
+      fb.className = 'quiz-feedback bad show';
+      fb.innerHTML = `✗ Oops! It's <span class="fb-answer">${q.dev}</span> (${q.roman}) — ${correct}`;
+      btn.classList.add('continue-bad');
+      q._correct = false;
+    }
+
+    phase = 'continue';
+    btn.textContent = hearts <= 0 ? 'See results' : 'Continue';
+  }
+
+  // Step 3: advance — mastered words leave the queue, missed words go to the back
+  function continueQuiz() {
+    if (hearts <= 0) { finishLesson(false); return; }
+    const q = queue.shift();
+    if (q._correct) {
+      mastered++;
+    } else {
+      q._correct = undefined;
+      queue.push(q);   // re-queue the missed word so it comes back
+    }
+    if (queue.length === 0) { finishLesson(true); return; }
+    renderQuiz();
+  }
+
+  /* ─────────────────────────────────────────────
+     COMPLETION / FAIL OVERLAY
+  ───────────────────────────────────────────── */
+  function finishLesson(passed) {
+    document.getElementById('quizBar').style.width = '100%';
+    const overlay = document.getElementById('quizOverlay');
+    // stars reflect hearts remaining — finish with all 3 hearts for a perfect run
+    const stars = Math.max(1, hearts);
+
+    if (passed) {
+      // mark progress + unlock the next lesson
+      if (!state.completed.includes(quizKey)) state.completed.push(quizKey);
+      const nextKey = LESSON_ORDER[LESSON_ORDER.indexOf(quizKey) + 1];
+      if (nextKey && !state.unlocked.includes(nextKey)) state.unlocked.push(nextKey);
+      saveState();
+      bumpStreak();
+      renderMap();
+
+      document.getElementById('overlayEmoji').textContent = ['😺','🌟','🎉','🏆'][stars] || '🎉';
+      document.getElementById('overlayTitle').textContent = 'Lesson complete!';
+      document.getElementById('overlaySub').textContent =
+        stars === 3 ? 'Flawless — every answer correct!' : 'Nicely done. Review the misses and try for 3 stars.';
+      document.getElementById('overlayNext').style.display = nextKey ? '' : 'none';
+      document.getElementById('overlayNext').dataset.next = nextKey || '';
+    } else {
+      document.getElementById('overlayEmoji').textContent = '💔';
+      document.getElementById('overlayTitle').textContent = 'Lesson failed';
+      document.getElementById('overlaySub').textContent = 'Out of hearts! Take a breath and try again.';
+      document.getElementById('overlayNext').style.display = 'none';
+    }
+
+    // stars
+    const starEls = document.querySelectorAll('#overlayStars .overlay-star');
+    starEls.forEach((s, i) => {
+      s.classList.toggle('lit', passed && i < stars);
+      s.style.animationDelay = (i * 0.15) + 's';
+    });
+
+    document.getElementById('overlayXp').textContent = '+' + sessionXp;
+    document.getElementById('overlayStreak').textContent = '🔥 ' + state.streak;
+    overlay.classList.add('show');
+  }
+
+  function restartLesson() { startQuiz(quizKey); }
+
+  function overlayNext() {
+    const next = document.getElementById('overlayNext').dataset.next;
+    if (next) jumpToLesson(next);
+    else restartLesson();
+  }
+
+  /* jump to a lesson from the map or the "next" button */
+  function jumpToLesson(key) {
+    currentTab = key;
+    document.querySelectorAll('.lesson-tab').forEach(t => {
+      t.classList.toggle('active', t.getAttribute('onclick').includes("'" + key + "'"));
+    });
+    renderVocab(key);
+    startQuiz(key);
+    document.getElementById('learn').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ─────────────────────────────────────────────
+     LESSON PATH MAP
+  ───────────────────────────────────────────── */
+  function renderMap() {
+    const map = document.getElementById('lessonMap');
+    let html = '';
+    LESSON_ORDER.forEach((key, i) => {
+      const meta = LESSON_META[key];
+      const done = state.completed.includes(key);
+      const unlocked = state.unlocked.includes(key);
+      // "current" = first unlocked-but-not-completed lesson
+      const current = unlocked && !done &&
+        LESSON_ORDER.slice(0, i).every(k => state.completed.includes(k));
+
+      let cls = 'locked', click = '', icon = '🔒';
+      if (done) { cls = 'done'; icon = meta.icon; click = `onclick="jumpToLesson('${key}')"`; }
+      else if (current) { cls = 'current'; icon = meta.icon; click = `onclick="jumpToLesson('${key}')"`; }
+      else if (unlocked) { cls = 'unlocked'; icon = meta.icon; click = `onclick="jumpToLesson('${key}')"`; }
+
+      if (i > 0) html += `<div class="map-connector ${state.completed.includes(LESSON_ORDER[i-1]) ? 'done' : ''}"></div>`;
+      html += `
+        <div class="map-node-row">
+          <button class="map-node ${cls}" ${click}>
+            ${icon}
+            ${done ? '<span class="node-check">✓</span>' : ''}
+          </button>
+          <span class="map-node-label">${meta.name}
+            <small>${done ? 'Completed' : current ? 'Start here' : unlocked ? 'Available' : 'Locked'}</small>
+          </span>
+        </div>`;
+    });
+    map.innerHTML = html;
+  }
+
+  /* ─────────────────────────────────────────────
+     LANGUAGE CARD SELECTION
+  ───────────────────────────────────────────── */
+  function selectLanguage(el, name) {
+    document.querySelectorAll('.lang-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    showXpToast(name + ' selected — let’s go!');
+    document.getElementById('path').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ─────────────────────────────────────────────
+     INIT
+  ───────────────────────────────────────────── */
+  // drop any stale lesson keys from older versions of the app
+  function sanitizeProgress() {
+    state.unlocked = (state.unlocked || []).filter(k => LESSON_ORDER.includes(k));
+    state.completed = (state.completed || []).filter(k => LESSON_ORDER.includes(k));
+    if (!state.unlocked.includes(LESSON_ORDER[0])) state.unlocked.push(LESSON_ORDER[0]);
+    saveState();
+  }
+  sanitizeProgress();
+
+  renderStats(false);
+  renderVocab('basics');
+  startQuiz('basics');
+  renderMap();
+</script>
+</body>
+</html>

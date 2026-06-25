@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sign in — Matri Bhasa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="nav-logo dev" style="margin:0 auto 12px">म</div>
+      <h1 class="auth-title">Matri Bhasa</h1>
+      <p class="auth-sub">Sign in to save your streak, XP and progress.</p>
+    </div>
+
+    <!-- ███ MAIN AUTH VIEW ███ -->
+    <div id="authView">
+      <!-- Google + method tabs are temporarily disabled (kept here for later) -->
+      <button class="google-btn hidden" id="googleBtn">
+        <span class="google-g">G</span> Continue with Google
+      </button>
+      <div id="gsiButton" class="hidden"></div>
+      <div class="auth-divider hidden">or</div>
+      <div class="auth-tabs hidden">
+        <button class="auth-tab active" id="tabEmail" onclick="selectMethod('email')">Email</button>
+        <button class="auth-tab" id="tabPhone" onclick="selectMethod('phone')">Phone</button>
+      </div>
+
+      <!-- USERNAME + PASSWORD panel -->
+      <div id="emailPanel">
+        <div class="field hidden" id="nameField">
+          <label>Name</label>
+          <input id="emName" type="text" placeholder="Your name" autocomplete="name"/>
+        </div>
+        <div class="field">
+          <label>Username</label>
+          <input id="emEmail" type="text" placeholder="Choose a username" autocomplete="username"/>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="emPass" type="password" placeholder="••••••••" autocomplete="current-password"/>
+        </div>
+        <div class="auth-error" id="emError"></div>
+        <button class="btn btn-green auth-submit" id="emSubmit" onclick="submitEmail()">Log in</button>
+        <div class="auth-switch">
+          <span id="emSwitchText">New here?</span>
+          <a id="emSwitchLink" onclick="toggleEmailMode()">Create an account</a>
+        </div>
+      </div>
+
+      <!-- PHONE panel -->
+      <div id="phonePanel" class="hidden">
+        <div class="field">
+          <label>Phone number</label>
+          <input id="phNumber" type="tel" placeholder="+977 98XXXXXXXX" autocomplete="tel"/>
+        </div>
+        <div class="field">
+          <label>Name <span style="color:var(--text-muted);font-weight:400">(new accounts only)</span></label>
+          <input id="phName" type="text" placeholder="Your name"/>
+        </div>
+        <div class="auth-error" id="phError"></div>
+        <button class="btn btn-green auth-submit" id="phSubmit" onclick="submitPhone()">Send code</button>
+        <div class="auth-switch">We'll text you a one-time verification code.</div>
+      </div>
+    </div>
+
+    <!-- ███ OTP VIEW ███ -->
+    <div id="otpView" class="hidden">
+      <p class="auth-sub" id="otpTarget">Enter the code sent to you</p>
+      <div class="otp-demo" id="otpDemo">Demo mode — code: <strong id="otpCode">000000</strong></div>
+      <div class="field">
+        <input id="otpInput" class="otp-input" type="text" inputmode="numeric" maxlength="6" placeholder="------"/>
+      </div>
+      <div class="auth-error" id="otpError"></div>
+      <button class="btn btn-green auth-submit" onclick="submitOtp()">Verify</button>
+      <div class="auth-switch">
+        <a onclick="resendOtp()">Resend code</a> &nbsp;·&nbsp; <a onclick="backToAuth()">← Back</a>
+      </div>
+    </div>
+
+    <p class="auth-fineprint">Your account is stored privately on this device.</p>
+  </div>
+</div>
+
+<!-- Google account chooser (local fallback — shows Google accounts saved on this browser) -->
+<div id="googleChooser" class="g-chooser hidden">
+  <div class="g-chooser-card">
+    <div class="g-chooser-head"><span class="google-g">G</span> Choose an account</div>
+    <div id="gAccountList"></div>
+    <button class="g-add" onclick="gAddAccount()">＋ Use another account</button>
+    <div id="gAddForm" class="hidden">
+      <input id="gEmail" type="email" placeholder="Google email"/>
+      <input id="gName" type="text" placeholder="Your name"/>
+      <button class="btn btn-green" style="width:100%" onclick="gCreate()">Continue</button>
+    </div>
+    <span class="g-cancel" onclick="closeGoogleChooser()">Cancel</span>
+  </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="auth.js"></script>
+<script>
+  /* already signed in? skip to the app */
+  if (currentUser()) location.replace('index.html');
+
+  let method = 'email';        // 'email' | 'phone'
+  let emailMode = 'login';     // 'login' | 'signup'
+  let pending = null;          // { purpose, ... } carried into the OTP step
+
+  /* ── method tabs ── */
+  function selectMethod(m) {
+    method = m;
+    document.getElementById('tabEmail').classList.toggle('active', m === 'email');
+    document.getElementById('tabPhone').classList.toggle('active', m === 'phone');
+    document.getElementById('emailPanel').classList.toggle('hidden', m !== 'email');
+    document.getElementById('phonePanel').classList.toggle('hidden', m !== 'phone');
+  }
+
+  /* ── login/signup toggle ── */
+  function toggleEmailMode() {
+    emailMode = emailMode === 'login' ? 'signup' : 'login';
+    const signup = emailMode === 'signup';
+    document.getElementById('emSubmit').textContent = signup ? 'Create account' : 'Log in';
+    document.getElementById('emSwitchText').textContent = signup ? 'Already have an account?' : 'New here?';
+    document.getElementById('emSwitchLink').textContent = signup ? 'Log in instead' : 'Create an account';
+    document.getElementById('emPass').setAttribute('autocomplete', signup ? 'new-password' : 'current-password');
+    document.getElementById('emError').textContent = '';
+  }
+
+  /* ── USERNAME + PASSWORD submit (OTP verification disabled for now) ── */
+  async function submitEmail() {
+    const err = document.getElementById('emError');
+    const username = document.getElementById('emEmail').value.trim();
+    const pass = document.getElementById('emPass').value;
+    err.textContent = '';
+    if (username.length < 3) { err.textContent = 'Username must be at least 3 characters.'; return; }
+    if (pass.length < 6) { err.textContent = 'Password must be at least 6 characters.'; return; }
+
+    if (emailMode === 'login') {
+      const user = findByUsername(username);
+      if (!user || !user.passwordHash) { err.textContent = 'No account found with that username.'; return; }
+      const hash = await hashPassword(pass);
+      if (hash !== user.passwordHash) { err.textContent = 'Incorrect password.'; return; }
+      finish(user.id);
+    } else {
+      if (findByUsername(username)) { err.textContent = 'That username is taken. Choose another.'; return; }
+      const passwordHash = await hashPassword(pass);
+      const user = createUser({ method: 'password', name: username, username, passwordHash, verified: true });
+      finish(user.id);   // straight in — no OTP step
+    }
+  }
+
+  /* ── PHONE submit ── */
+  function submitPhone() {
+    const err = document.getElementById('phError');
+    const phone = normPhone(document.getElementById('phNumber').value);
+    const name = document.getElementById('phName').value.trim();
+    err.textContent = '';
+    if (phone.replace(/\D/g, '').length < 7) { err.textContent = 'Enter a valid phone number.'; return; }
+    const existing = findByPhone(phone);
+    pending = { purpose: 'phone', phone, name, existingId: existing ? existing.id : null };
+    const code = issueOtp(phone, 'phone');
+    showOtp('Enter the code we texted to ' + phone, code);
+  }
+
+  /* ── GOOGLE ──
+     If GOOGLE_CLIENT_ID (in auth.js) is set, real Google Identity Services
+     loads and shows the actual Google accounts saved in this browser.
+     Otherwise we show a local chooser of Google accounts saved on this device. */
+  function decodeJwt(token) {
+    try {
+      const json = atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'));
+      return JSON.parse(decodeURIComponent(json.split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+    } catch (e) { return {}; }
+  }
+  function handleGoogleCredential(resp) {
+    const p = decodeJwt(resp.credential);
+    if (!p.email) return;
+    let user = findByEmail(p.email);
+    if (!user) user = createUser({ method: 'google', name: p.name || p.email.split('@')[0], email: normEmail(p.email), verified: true, picture: p.picture });
+    finish(user.id);
+  }
+  function initRealGoogle() {
+    if (!GOOGLE_CLIENT_ID || !(window.google && google.accounts && google.accounts.id)) return false;
+    google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: handleGoogleCredential, auto_select: false });
+    google.accounts.id.renderButton(document.getElementById('gsiButton'), { theme: 'outline', size: 'large', width: 336, text: 'continue_with' });
+    google.accounts.id.prompt();            // One Tap: shows the accounts saved in the browser
+    document.getElementById('googleBtn').classList.add('hidden');
+    return true;
+  }
+  window.addEventListener('load', initRealGoogle);
+
+  /* local fallback chooser */
+  document.getElementById('googleBtn').onclick = openGoogleChooser;
+  function openGoogleChooser() {
+    if (initRealGoogle()) return;           // prefer real Google if configured
+    const saved = Object.values(getUsers()).filter(u => u.method === 'google');
+    const list = document.getElementById('gAccountList');
+    list.innerHTML = saved.length
+      ? saved.map(u => `
+        <button class="g-acc" data-id="${u.id}">
+          <span class="g-acc-av">${(u.name || u.email || 'G')[0].toUpperCase()}</span>
+          <span class="g-acc-info"><b>${u.name || ''}</b><small>${u.email}</small></span>
+        </button>`).join('')
+      : '<div class="g-empty">No Google accounts saved on this browser yet — add one below.</div>';
+    list.querySelectorAll('.g-acc').forEach(b => b.onclick = () => finish(b.dataset.id));
+    document.getElementById('gAddForm').classList.toggle('hidden', saved.length > 0);
+    document.getElementById('googleChooser').classList.remove('hidden');
+  }
+  function gAddAccount() { document.getElementById('gAddForm').classList.remove('hidden'); document.getElementById('gEmail').focus(); }
+  function gCreate() {
+    const email = document.getElementById('gEmail').value.trim();
+    const name = document.getElementById('gName').value.trim() || email.split('@')[0];
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { alert('Please enter a valid Google email.'); return; }
+    let user = findByEmail(email);
+    if (!user) user = createUser({ method: 'google', name, email: normEmail(email), verified: true });
+    finish(user.id);
+  }
+  function closeGoogleChooser() { document.getElementById('googleChooser').classList.add('hidden'); }
+
+  /* ── OTP step ── */
+  function showOtp(targetMsg, code) {
+    document.getElementById('authView').classList.add('hidden');
+    document.getElementById('otpView').classList.remove('hidden');
+    document.getElementById('otpTarget').textContent = targetMsg;
+    document.getElementById('otpCode').textContent = code;   // demo: reveal the code
+    document.getElementById('otpInput').value = '';
+    document.getElementById('otpError').textContent = '';
+    document.getElementById('otpInput').focus();
+  }
+  function backToAuth() {
+    clearOtp();
+    document.getElementById('otpView').classList.add('hidden');
+    document.getElementById('authView').classList.remove('hidden');
+  }
+  function resendOtp() {
+    if (!pending) return;
+    const code = issueOtp(pending.phone || pending.userId, pending.purpose);
+    document.getElementById('otpCode').textContent = code;
+    document.getElementById('otpError').textContent = '';
+    document.getElementById('otpInput').value = '';
+  }
+  function submitOtp() {
+    const err = document.getElementById('otpError');
+    const res = verifyOtp(document.getElementById('otpInput').value);
+    if (!res.ok) { err.textContent = res.reason; return; }
+    clearOtp();
+    if (pending.purpose === 'verify-email') {
+      updateUser(pending.userId, { verified: true });
+      finish(pending.userId);
+    } else if (pending.purpose === 'phone') {
+      if (pending.existingId) {
+        finish(pending.existingId);
+      } else {
+        const user = createUser({ method: 'phone', name: pending.name || 'Learner', phone: pending.phone, verified: true });
+        finish(user.id);
+      }
+    }
+  }
+
+  /* ── done ── */
+  function finish(userId) {
+    setSession(userId);
+    location.href = 'index.html';
+  }
+
+  /* allow Enter to submit on each input */
+  document.getElementById('emPass').addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
+  document.getElementById('phNumber').addEventListener('keydown', e => { if (e.key === 'Enter') submitPhone(); });
+  document.getElementById('otpInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitOtp(); });
+</script>
+</body>
+</html>
